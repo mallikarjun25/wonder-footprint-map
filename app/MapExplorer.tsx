@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Location } from "./locations";
 
 type GeoLocation = Location & { latitude: number; longitude: number; distance?: number };
@@ -12,9 +12,8 @@ function easternMinutes(date: Date) {
   return Number(parts.find((part) => part.type === "hour")?.value) * 60 + Number(parts.find((part) => part.type === "minute")?.value);
 }
 
-function isOpenNow(location: Location, date: Date) {
+function isOpenAt(location: Location, minutes: number) {
   if (location.status || location.opensAt === undefined || location.closesAt === undefined) return false;
-  const minutes = easternMinutes(date);
   return location.closesAt > location.opensAt ? minutes >= location.opensAt && minutes < location.closesAt : minutes >= location.opensAt || minutes < location.closesAt;
 }
 
@@ -31,9 +30,9 @@ function milesBetween(a: UserPosition, b: UserPosition) {
 
 export default function MapExplorer({ locations }: { locations: GeoLocation[] }) {
   const mapNode = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<any>(null);
-  const layerRef = useRef<any>(null);
-  const userLayerRef = useRef<any>(null);
+  const mapRef = useRef<import("leaflet").Map | null>(null);
+  const layerRef = useRef<import("leaflet").LayerGroup | null>(null);
+  const userLayerRef = useRef<import("leaflet").LayerGroup | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [state, setState] = useState("ALL");
   const [status, setStatus] = useState<"ALL" | "COMING" | "RENOVATION">("ALL");
@@ -46,6 +45,8 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   const [locationState, setLocationState] = useState<"idle" | "locating" | "denied" | "unavailable">("idle");
 
   const states = useMemo(() => [...new Set(locations.map((l) => l.state))].sort(), [locations]);
+  const currentMinutes = easternMinutes(now);
+  const availabilityMinute = availability === "ALL" ? -1 : currentMinutes;
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60000);
     return () => window.clearInterval(timer);
@@ -54,9 +55,9 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   const filtered = useMemo(() => locations.filter((location) =>
     (state === "ALL" || location.state === state) &&
     (status === "ALL" || (status === "COMING" ? location.status === "coming-soon" : location.status === "renovation")) &&
-    (availability === "ALL" || (location.status !== "coming-soon" && (availability === "OPEN_NOW" ? isOpenNow(location, now) : !isOpenNow(location, now)))) &&
+    (availability === "ALL" || (location.status !== "coming-soon" && (availability === "OPEN_NOW" ? isOpenAt(location, availabilityMinute) : !isOpenAt(location, availabilityMinute)))) &&
     `${location.name} ${location.address}`.toLowerCase().includes(query.toLowerCase())
-  ), [locations, state, status, availability, query, now]);
+  ), [locations, state, status, availability, query, availabilityMinute]);
 
   const nearby = useMemo(() => {
     if (!userPosition) return [];
@@ -68,6 +69,11 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   }, [locations, userPosition]);
 
   const visible = nearMode ? nearby : filtered;
+
+  const focusLocation = useCallback((location: GeoLocation) => {
+    setSelected(location);
+    mapRef.current?.flyTo([location.latitude, location.longitude], 13, { duration: 1.15, easeLinearity: .22 });
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -81,8 +87,8 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
         fadeAnimation: true,
         markerZoomAnimation: false,
       });
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-        attribution: "&copy; OpenStreetMap &copy; CARTO",
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
       }).addTo(map);
       L.control.zoom({ position: "bottomright" }).addTo(map);
@@ -119,7 +125,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
         marker.on("click", () => focusLocation(location));
       });
     });
-  }, [mapReady, visible, selected?.slug]);
+  }, [mapReady, visible, selected?.slug, focusLocation]);
 
   useEffect(() => {
     if (!mapReady || !mapRef.current || nearMode || !visible.length) return;
@@ -146,11 +152,6 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
     ];
     mapRef.current.flyToBounds(bounds, { padding: [58, 58], maxZoom: 11, duration: 1.25 });
   }, [mapReady, nearMode, userPosition, nearby]);
-
-  const focusLocation = (location: GeoLocation) => {
-    setSelected(location);
-    mapRef.current?.flyTo([location.latitude, location.longitude], 13, { duration: 1.15, easeLinearity: .22 });
-  };
 
   const locateMe = () => {
     if (!navigator.geolocation) {
@@ -235,7 +236,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
           {visible.map((location) => (
             <button key={location.slug} className={`location-card ${selected?.slug === location.slug ? "selected" : ""}`} onClick={() => focusLocation(location)}>
               <span className={`pin-dot ${location.status === "coming-soon" ? "planned" : ""}`} />
-              <span><strong>{location.name}</strong><small>{location.address}</small>{location.distance !== undefined && <em className="distance">{location.distance.toFixed(1)} miles away</em>}{!location.status && <em className={isOpenNow(location, now) ? "live-open" : "live-closed"}>{isOpenNow(location, now) ? "Open now" : "Closed now"}</em>}{location.status === "renovation" && <em>Closed for renovations</em>}{location.status === "coming-soon" && <em>Coming {location.plannedFor}</em>}</span>
+              <span><strong>{location.name}</strong><small>{location.address}</small>{location.distance !== undefined && <em className="distance">{location.distance.toFixed(1)} miles away</em>}{!location.status && <em className={isOpenAt(location, currentMinutes) ? "live-open" : "live-closed"}>{isOpenAt(location, currentMinutes) ? "Open now" : "Closed now"}</em>}{location.status === "renovation" && <em>Closed for renovations</em>}{location.status === "coming-soon" && <em>Coming {location.plannedFor}</em>}</span>
               <span aria-hidden="true">→</span>
             </button>
           ))}
@@ -254,7 +255,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
           <h2>{selected.name}</h2>
           <p>{selected.address}</p>
           {selected.distance !== undefined && <p className="distance-copy">Approximately {selected.distance.toFixed(1)} miles from you</p>}
-          {!selected.status && <div className={`hours-panel ${isOpenNow(selected, now) ? "is-open" : "is-closed"}`}><span>{isOpenNow(selected, now) ? "Open now" : "Closed now"}</span><strong>{selected.hoursLabel}</strong><small>Eastern Time · hours may change</small></div>}
+          {!selected.status && <div className={`hours-panel ${isOpenAt(selected, currentMinutes) ? "is-open" : "is-closed"}`}><span>{isOpenAt(selected, currentMinutes) ? "Open now" : "Closed now"}</span><strong>{selected.hoursLabel}</strong><small>Eastern Time · confirm on the official listing</small></div>}
           {selected.status === "renovation" && <div className="status-note">Temporarily closed for renovations</div>}
           {selected.status === "coming-soon" && <div className="status-note">Announced for {selected.plannedFor} · exact address not yet published</div>}
           <div className="detail-actions">
