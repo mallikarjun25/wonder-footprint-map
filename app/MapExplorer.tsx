@@ -102,7 +102,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   }, [mapReady, visible, selected?.slug]);
 
   useEffect(() => {
-    if (!mapReady || nearMode || !visible.length) return;
+    if (!mapReady || !mapRef.current || nearMode || !visible.length) return;
     const bounds: [number, number][] = visible.map((location) => [location.latitude, location.longitude]);
     mapRef.current.flyToBounds(bounds, { padding: [42, 42], maxZoom: state === "ALL" ? 7 : 10, duration: 1.05 });
   }, [mapReady, visible, nearMode, state]);
@@ -119,7 +119,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   }, [mapReady, userPosition]);
 
   useEffect(() => {
-    if (!mapReady || !nearMode || !userPosition || !nearby.length) return;
+    if (!mapReady || !mapRef.current || !nearMode || !userPosition || !nearby.length) return;
     const bounds: [number, number][] = [
       [userPosition.latitude, userPosition.longitude],
       ...nearby.slice(0, 6).map((location) => [location.latitude, location.longitude] as [number, number]),
