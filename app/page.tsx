@@ -21,6 +21,10 @@ export default function Home() {
 
   return (
     <main>
+      <aside className="project-notice" role="note" aria-label="Independent project notice">
+        <strong>Independent test project</strong>
+        <span>This test webpage uses publicly available details from the Wonder location directory. It is not intended for general public use and was created as a personal hobby project.</span>
+      </aside>
       <header className="site-header">
         <a className="wordmark" href="#" aria-label="The Wonder Footprint home">The Wonder Footprint</a>
         <nav aria-label="Main navigation">
