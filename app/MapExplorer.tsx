@@ -36,7 +36,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   const userLayerRef = useRef<any>(null);
   const [mapReady, setMapReady] = useState(false);
   const [state, setState] = useState("ALL");
-  const [status, setStatus] = useState<"ALL" | "OPEN" | "COMING">("ALL");
+  const [status, setStatus] = useState<"ALL" | "COMING" | "RENOVATION">("ALL");
   const [availability, setAvailability] = useState<Availability>("ALL");
   const [now, setNow] = useState(() => new Date());
   const [query, setQuery] = useState("");
@@ -53,7 +53,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
 
   const filtered = useMemo(() => locations.filter((location) =>
     (state === "ALL" || location.state === state) &&
-    (status === "ALL" || (status === "COMING" ? location.status === "coming-soon" : location.status !== "coming-soon")) &&
+    (status === "ALL" || (status === "COMING" ? location.status === "coming-soon" : location.status === "renovation")) &&
     (availability === "ALL" || (location.status !== "coming-soon" && (availability === "OPEN_NOW" ? isOpenNow(location, now) : !isOpenNow(location, now)))) &&
     `${location.name} ${location.address}`.toLowerCase().includes(query.toLowerCase())
   ), [locations, state, status, availability, query, now]);
@@ -163,7 +163,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
         setUserPosition({ latitude: coords.latitude, longitude: coords.longitude });
         setNearMode(true);
         setState("ALL");
-        setStatus("OPEN");
+        setStatus("ALL");
         setAvailability("ALL");
         setQuery("");
         setSelected(null);
@@ -217,16 +217,17 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
             <button className={state === "ALL" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setState("ALL"))}>All</button>
             {states.map((item) => <button key={item} className={state === item && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setState(item))}>{item}</button>)}
           </div>
-          <div className="status-row" aria-label="Filter by operating status">
-            <button className={status === "ALL" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setStatus("ALL"))}>All locations</button>
-            <button className={status === "OPEN" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setStatus("OPEN"))}>Open</button>
-            <button className={status === "COMING" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setStatus("COMING"))}>Coming soon</button>
+          <span className="filter-group-label">STATUS</span>
+          <div className="status-row" aria-label="Filter by location status">
+            <button className={status === "ALL" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => { setStatus("ALL"); setAvailability("ALL"); })}>All locations</button>
+            <button className={status === "COMING" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => { setStatus("COMING"); setAvailability("ALL"); })}>Coming soon</button>
+            <button className={status === "RENOVATION" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => { setStatus("RENOVATION"); setAvailability("ALL"); })}>Renovation</button>
           </div>
-          <div className="availability-row" aria-label="Filter by current availability">
-            <span>RIGHT NOW</span>
-            <button className={availability === "ALL" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setAvailability("ALL"))}>Any</button>
-            <button className={availability === "OPEN_NOW" && !nearMode ? "active open-now" : ""} onClick={() => changeFilter(() => setAvailability("OPEN_NOW"))}>Open now</button>
-            <button className={availability === "CLOSED_NOW" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setAvailability("CLOSED_NOW"))}>Closed now</button>
+          <span className={`filter-group-label hours-label ${status !== "ALL" ? "disabled" : ""}`}>HOURS</span>
+          <div className={`availability-row ${status !== "ALL" ? "disabled" : ""}`} aria-label="Filter by current hours" aria-disabled={status !== "ALL"}>
+            <button disabled={status !== "ALL"} className={availability === "ALL" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setAvailability("ALL"))}>Any time</button>
+            <button disabled={status !== "ALL"} className={availability === "OPEN_NOW" && !nearMode ? "active open-now" : ""} onClick={() => changeFilter(() => setAvailability("OPEN_NOW"))}>Open now</button>
+            <button disabled={status !== "ALL"} className={availability === "CLOSED_NOW" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setAvailability("CLOSED_NOW"))}>Closed now</button>
           </div>
         </div>
         <div className="result-head"><strong>{visible.length}</strong> {nearMode ? "nearest open locations" : "locations"} <span>•</span> {nearMode ? "sorted by distance" : state === "ALL" ? "Northeast network" : state}</div>

@@ -66,14 +66,16 @@ a { color: inherit; }
 .state-row { display: flex; gap: 7px; overflow-x: auto; padding-top: 12px; scrollbar-width: none; }
 .state-row button { flex: 0 0 auto; border: 1px solid #20834b; background: transparent; color: var(--wonder-green); border-radius: 999px; padding: 7px 13px; font-size: 11px; font-weight: 500; cursor: pointer; transition: color .25s ease, background-color .25s ease; }
 .state-row button.active, .state-row button:hover { background: var(--wonder-green); color: #fff; }
-.status-row { display: grid; grid-template-columns: 1.2fr .8fr 1.2fr; gap: 6px; margin-top: 9px; }
+.filter-group-label { display: block; margin-top: 12px; color: #77736c; font-size: 9px; font-weight: 600; letter-spacing: .09em; transition: opacity .2s ease; }
+.filter-group-label.hours-label { margin-top: 10px; }.filter-group-label.disabled { opacity: .42; }
+.status-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 6px; }
 .status-row button { border: 1px solid var(--wonder-line); background: transparent; border-radius: 4px; padding: 8px 5px; color: #5d625f; font-size: 10px; font-weight: 500; cursor: pointer; transition: all .25s ease; }
 .status-row button.active, .status-row button:hover { background: var(--wonder-cream-deep); border-color: var(--wonder-green); color: var(--wonder-green); }
-.availability-row { display: grid; grid-template-columns: auto repeat(3,1fr); align-items: center; gap: 6px; margin-top: 8px; }
-.availability-row > span { color: #77736c; font-size: 9px; font-weight: 600; letter-spacing: .08em; margin-right: 2px; }
+.availability-row { display: grid; grid-template-columns: repeat(3,1fr); align-items: center; gap: 6px; margin-top: 6px; transition: opacity .2s ease; }
 .availability-row button { border: 1px solid var(--wonder-line); background: transparent; border-radius: 999px; padding: 7px 5px; color: #5d625f; font-size: 9px; font-weight: 600; cursor: pointer; transition: all .25s ease; }
 .availability-row button.active, .availability-row button:hover { border-color: var(--wonder-green); color: var(--wonder-green); background: var(--wonder-cream-deep); }
 .availability-row button.active.open-now { color: #fff; background: var(--wonder-green); }
+.availability-row.disabled { opacity: .42; }.availability-row button:disabled { cursor: not-allowed; }
 .result-head { padding: 14px 20px; color: #696864; font-size: 12px; border-bottom: 1px solid var(--wonder-line); }
 .result-head strong { color: var(--wonder-green); font-size: 15px; }.result-head span { margin: 0 4px; }
 .location-list { overflow-y: auto; scrollbar-color: #b9baaf transparent; scrollbar-width: thin; }
