@@ -8,7 +8,17 @@ export type Location = {
   plannedFor?: string;
   latitude?: number;
   longitude?: number;
+  hoursLabel?: string;
+  opensAt?: number;
+  closesAt?: number;
 };
+
+const hoursBySlug: Record<string, { label: string; opensAt: number; closesAt: number }> = {
+  "upper-west-side": { label: "Daily · 6:00am–11:30pm", opensAt: 360, closesAt: 1410 },
+  "14th-street-nw": { label: "Daily · 10:30am–5:00am", opensAt: 630, closesAt: 300 },
+  natick: { label: "Daily · 10:30am–2:00am", opensAt: 630, closesAt: 120 },
+};
+const standardHours = { label: "Daily · 10:30am–11:30pm", opensAt: 630, closesAt: 1410 };
 
 const rows = `
 Upper West Side|2030 Broadway, New York, NY 10023|NY|10023|upper-west-side
@@ -161,7 +171,8 @@ Great Neck|48 Great Neck Road, Great Neck Plaza, NY 11021|NY|11021|great-neck`;
 
 export const locations: Location[] = rows.trim().split("\n").map((row) => {
   const [name, address, state, zip, slug, status] = row.split("|");
-  return { name, address, state, zip, slug, status: status as Location["status"] };
+  const hours = hoursBySlug[slug] || standardHours;
+  return { name, address, state, zip, slug, status: status as Location["status"], hoursLabel: hours.label, opensAt: hours.opensAt, closesAt: hours.closesAt };
 });
 
 export const comingSoon: Location[] = [
