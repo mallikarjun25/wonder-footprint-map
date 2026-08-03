@@ -10,14 +10,16 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   const mapRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
   const [state, setState] = useState("ALL");
+  const [status, setStatus] = useState<"ALL" | "OPEN" | "COMING">("ALL");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<GeoLocation | null>(null);
 
   const states = useMemo(() => [...new Set(locations.map((l) => l.state))].sort(), [locations]);
   const visible = useMemo(() => locations.filter((l) =>
     (state === "ALL" || l.state === state) &&
+    (status === "ALL" || (status === "COMING" ? l.status === "coming-soon" : l.status !== "coming-soon")) &&
     `${l.name} ${l.address}`.toLowerCase().includes(query.toLowerCase())
-  ), [locations, state, query]);
+  ), [locations, state, status, query]);
 
   useEffect(() => {
     let active = true;
@@ -44,10 +46,11 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
       visible.forEach((loc) => {
         const marker = L.circleMarker([loc.latitude, loc.longitude], {
           radius: selected?.slug === loc.slug ? 9 : 6,
-          color: loc.status === "renovation" ? "#ef7d32" : "#0a4d3c",
+          color: loc.status === "coming-soon" ? "#ef7d32" : loc.status === "renovation" ? "#ef7d32" : "#0a4d3c",
           weight: 2,
-          fillColor: loc.status === "renovation" ? "#fff3e8" : "#f8f1e6",
-          fillOpacity: 1,
+          fillColor: loc.status === "coming-soon" ? "#ef7d32" : loc.status === "renovation" ? "#fff3e8" : "#f8f1e6",
+          fillOpacity: loc.status === "coming-soon" ? .86 : 1,
+          dashArray: loc.status === "renovation" ? "3 3" : undefined,
         }).addTo(layerRef.current);
         marker.bindTooltip(loc.name, { direction: "top", offset: [0, -7] });
         marker.on("click", () => setSelected(loc));
@@ -75,13 +78,18 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
             <button className={state === "ALL" ? "active" : ""} onClick={() => setState("ALL")}>All</button>
             {states.map((s) => <button key={s} className={state === s ? "active" : ""} onClick={() => setState(s)}>{s}</button>)}
           </div>
+          <div className="status-row" aria-label="Filter by operating status">
+            <button className={status === "ALL" ? "active" : ""} onClick={() => setStatus("ALL")}>All locations</button>
+            <button className={status === "OPEN" ? "active" : ""} onClick={() => setStatus("OPEN")}>Open</button>
+            <button className={status === "COMING" ? "active" : ""} onClick={() => setStatus("COMING")}>Coming soon</button>
+          </div>
         </div>
         <div className="result-head"><strong>{visible.length}</strong> locations <span>•</span> {state === "ALL" ? "Northeast network" : state}</div>
         <div className="location-list">
           {visible.map((loc) => (
             <button key={loc.slug} className={`location-card ${selected?.slug === loc.slug ? "selected" : ""}`} onClick={() => focus(loc)}>
               <span className="pin-dot" />
-              <span><strong>{loc.name}</strong><small>{loc.address}</small>{loc.status === "renovation" && <em>Closed for renovations</em>}</span>
+              <span><strong>{loc.name}</strong><small>{loc.address}</small>{loc.status === "renovation" && <em>Closed for renovations</em>}{loc.status === "coming-soon" && <em>Coming {loc.plannedFor}</em>}</span>
               <span aria-hidden="true">›</span>
             </button>
           ))}
@@ -89,20 +97,20 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
       </aside>
       <div className="map-wrap">
         <div ref={mapNode} className="map" />
-        <div className="map-key"><span className="open-dot" /> Open <span className="reno-dot" /> Renovation</div>
+        <div className="map-key"><span className="open-dot" /> Open <span className="reno-dot hollow" /> Renovation <span className="reno-dot" /> Coming soon</div>
         {selected && <div className="detail-card">
           <button className="close" onClick={() => setSelected(null)} aria-label="Close location details">×</button>
           <span className="eyebrow">{selected.state} LOCATION</span>
           <h2>{selected.name}</h2>
           <p>{selected.address}</p>
           {selected.status === "renovation" && <div className="status-note">Temporarily closed for renovations</div>}
+          {selected.status === "coming-soon" && <div className="status-note">Announced for {selected.plannedFor} · exact address not yet published</div>}
           <div className="detail-actions">
-            <a href={`https://www.wonder.com/food-delivery-locations/${selected.slug}`} target="_blank" rel="noreferrer">View official location</a>
-            <a className="outline" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selected.address)}`} target="_blank" rel="noreferrer">Directions</a>
+            <a href={`https://www.wonder.com/food-delivery-locations/${selected.slug}`} target="_blank" rel="noreferrer">View official listing</a>
+            {selected.status !== "coming-soon" && <a className="outline" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selected.address)}`} target="_blank" rel="noreferrer">Directions</a>}
           </div>
         </div>}
       </div>
     </section>
   );
 }
-

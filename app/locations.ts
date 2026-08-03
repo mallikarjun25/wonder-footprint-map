@@ -4,7 +4,10 @@ export type Location = {
   state: string;
   zip: string;
   slug: string;
-  status?: "renovation";
+  status?: "renovation" | "coming-soon";
+  plannedFor?: string;
+  latitude?: number;
+  longitude?: number;
 };
 
 const rows = `
@@ -161,3 +164,26 @@ export const locations: Location[] = rows.trim().split("\n").map((row) => {
   return { name, address, state, zip, slug, status: status as Location["status"] };
 });
 
+export const comingSoon: Location[] = [
+  { name: "Glen Cove", address: "Glen Cove, NY", state: "NY", zip: "", slug: "glen-cove", status: "coming-soon", plannedFor: "February 2027", latitude: 40.8623, longitude: -73.6337 },
+  { name: "West Hartford", address: "West Hartford, CT", state: "CT", zip: "", slug: "west-hartford", status: "coming-soon", plannedFor: "August 2026", latitude: 41.7620, longitude: -72.7420 },
+  { name: "Falls Church", address: "Falls Church, VA", state: "VA", zip: "", slug: "falls-church", status: "coming-soon", plannedFor: "September 2026", latitude: 38.8823, longitude: -77.1711 },
+  { name: "Brookline", address: "Brookline, MA", state: "MA", zip: "", slug: "brookline", status: "coming-soon", plannedFor: "September 2026", latitude: 42.3318, longitude: -71.1212 },
+  { name: "Tyngsborough", address: "Tyngsborough, MA", state: "MA", zip: "", slug: "tyngsborough", status: "coming-soon", plannedFor: "August 2026", latitude: 42.6768, longitude: -71.4245 },
+  { name: "Fresh Meadows", address: "Fresh Meadows, Queens, NY", state: "NY", zip: "", slug: "fresh-meadows", status: "coming-soon", plannedFor: "October 2026", latitude: 40.7335, longitude: -73.7801 },
+  { name: "Bayside", address: "Bayside, Queens, NY", state: "NY", zip: "", slug: "bayside", status: "coming-soon", plannedFor: "November 2026", latitude: 40.7586, longitude: -73.7654 },
+  { name: "Emerson", address: "Emerson, NJ", state: "NJ", zip: "", slug: "emerson", status: "coming-soon", plannedFor: "January 2027", latitude: 40.9762, longitude: -74.0263 },
+  { name: "Smoketown Station", address: "Woodbridge, VA", state: "VA", zip: "", slug: "smoketown-station", status: "coming-soon", plannedFor: "September 2026", latitude: 38.6440, longitude: -77.3034 },
+  { name: "Farmington Valley", address: "Farmington Valley, CT", state: "CT", zip: "", slug: "farmington-valley", status: "coming-soon", plannedFor: "September 2026", latitude: 41.7198, longitude: -72.8320 },
+  { name: "Gaithersburg", address: "Gaithersburg, MD", state: "MD", zip: "", slug: "gaithersburg", status: "coming-soon", plannedFor: "August 2026", latitude: 39.1434, longitude: -77.2014 },
+  { name: "Lindenhurst", address: "Lindenhurst, NY", state: "NY", zip: "", slug: "lindenhurst", status: "coming-soon", plannedFor: "January 2027", latitude: 40.6868, longitude: -73.3735 },
+  { name: "York", address: "York, PA", state: "PA", zip: "", slug: "york", status: "coming-soon", plannedFor: "August 2026", latitude: 39.9626, longitude: -76.7277 },
+  { name: "Columbia", address: "Columbia, MD", state: "MD", zip: "", slug: "columbia", status: "coming-soon", plannedFor: "October 2026", latitude: 39.2037, longitude: -76.8610 },
+  { name: "Hamden", address: "Hamden, CT", state: "CT", zip: "", slug: "hamden", status: "coming-soon", plannedFor: "August 2026", latitude: 41.3959, longitude: -72.8968 },
+  { name: "Indian Orchard", address: "Indian Orchard, Springfield, MA", state: "MA", zip: "", slug: "indian-orchard", status: "coming-soon", plannedFor: "September 2026", latitude: 42.1584, longitude: -72.5051 },
+  { name: "Gravesend", address: "Gravesend, Brooklyn, NY", state: "NY", zip: "", slug: "gravesend", status: "coming-soon", plannedFor: "January 2027", latitude: 40.5953, longitude: -73.9708 },
+  { name: "Massapequa Park", address: "Massapequa Park, NY", state: "NY", zip: "", slug: "massapequa-park", status: "coming-soon", plannedFor: "August 2026", latitude: 40.6804, longitude: -73.4551 },
+  { name: "Salem", address: "Salem, NH", state: "NH", zip: "", slug: "salem", status: "coming-soon", plannedFor: "August 2026", latitude: 42.7884, longitude: -71.2009 },
+  { name: "Waldorf", address: "Waldorf, MD", state: "MD", zip: "", slug: "waldorf", status: "coming-soon", plannedFor: "August 2026", latitude: 38.6246, longitude: -76.9391 },
+  { name: "Millbury", address: "Millbury, MA", state: "MA", zip: "", slug: "millbury", status: "coming-soon", plannedFor: "September 2026", latitude: 42.1939, longitude: -71.7606 },
+];

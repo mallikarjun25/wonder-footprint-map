@@ -1,12 +1,17 @@
 import zipcodes from "zipcodes";
 import MapExplorer from "./MapExplorer";
-import { locations } from "./locations";
+import { comingSoon, locations } from "./locations";
 
 export default function Home() {
-  const geoLocations = locations.flatMap((location) => {
+  const openLocations = locations.flatMap((location) => {
     const geo = zipcodes.lookup(location.zip);
     return geo ? [{ ...location, latitude: geo.latitude, longitude: geo.longitude }] : [];
   });
+  const geoLocations = [...openLocations, ...comingSoon.map((location) => ({
+    ...location,
+    latitude: location.latitude as number,
+    longitude: location.longitude as number,
+  }))];
 
   const counts = geoLocations.reduce<Record<string, number>>((acc, location) => {
     acc[location.state] = (acc[location.state] || 0) + 1;
@@ -24,11 +29,11 @@ export default function Home() {
       <section className="hero">
         <div>
           <span className="kicker">THE WONDER FOOTPRINT · AUGUST 2026</span>
-          <h1>One network.<br/><em>{geoLocations.length} places</em> to wonder.</h1>
-          <p>An interactive view of Wonder’s rapidly growing Northeast food-hall network—built from the company’s public location directory.</p>
+          <h1>One network.<br/><em>{openLocations.length} places</em> to wonder.</h1>
+          <p>An interactive view of Wonder’s rapidly growing Northeast food-hall network—plus {comingSoon.length} announced openings—built from the company’s public location directory.</p>
         </div>
         <div className="hero-stats">
-          <div><strong>{geoLocations.length}</strong><span>mapped locations</span></div>
+          <div><strong>{openLocations.length} + {comingSoon.length}</strong><span>open + announced</span></div>
           <div><strong>{Object.keys(counts).length}</strong><span>states + D.C.</span></div>
           <div><strong>{topMarkets[0][0]} · {topMarkets[0][1]}</strong><span>largest market</span></div>
         </div>
@@ -40,10 +45,9 @@ export default function Home() {
         <div><b>↗</b><strong>{Object.keys(counts).length - 3} more markets</strong><em>expanding across the Northeast</em></div>
       </section>
       <footer>
-        <p><strong>Independent portfolio analysis.</strong> Not affiliated with or endorsed by Wonder Group, Inc. Location names, addresses, and operating notes are sourced from Wonder’s public directory and may change.</p>
+        <p><strong>Independent portfolio analysis.</strong> Not affiliated with or endorsed by Wonder Group, Inc. Location names, addresses, renovation notes, and announced opening windows are sourced from Wonder’s public directory and may change. Planned-site markers represent the named market center until a street address is published.</p>
         <p>Prepared by Mallikarjun Aitha · Data current August 3, 2026</p>
       </footer>
     </main>
   );
 }
-
