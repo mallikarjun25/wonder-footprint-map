@@ -59,7 +59,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
         preferCanvas: true,
         zoomAnimation: true,
         fadeAnimation: true,
-        markerZoomAnimation: true,
+        markerZoomAnimation: false,
       });
       L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
         attribution: "&copy; OpenStreetMap &copy; CARTO",
@@ -83,37 +83,38 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
     if (!mapReady || !mapRef.current || !layerRef.current) return;
     import("leaflet").then((L) => {
       layerRef.current.clearLayers();
-      const bounds: [number, number][] = [];
       visible.forEach((location) => {
-        const marker = L.circleMarker([location.latitude, location.longitude], {
-          radius: location.status === "coming-soon" ? 6.5 : 6,
-          color: location.status === "coming-soon" || location.status === "renovation" ? "#d8783d" : "#044123",
-          weight: 2,
-          fillColor: location.status === "coming-soon" ? "#d8783d" : "#fcf7ed",
-          fillOpacity: location.status === "coming-soon" ? .9 : 1,
-          dashArray: location.status === "renovation" ? "3 3" : undefined,
+        const classes = [
+          "wonder-map-pin",
+          location.status === "coming-soon" ? "planned" : "",
+          location.status === "renovation" ? "renovation" : "",
+          selected?.slug === location.slug ? "selected" : "",
+        ].filter(Boolean).join(" ");
+        const marker = L.marker([location.latitude, location.longitude], {
+          icon: L.divIcon({ className: "wonder-pin-shell", html: `<span class="${classes}"></span>`, iconSize: [28, 28], iconAnchor: [14, 14] }),
+          riseOnHover: true,
+          riseOffset: 500,
         }).addTo(layerRef.current);
         marker.bindTooltip(location.name, { direction: "top", offset: [0, -7] });
         marker.on("click", () => focusLocation(location));
-        bounds.push([location.latitude, location.longitude]);
       });
-      if (bounds.length && !nearMode) {
-        mapRef.current.flyToBounds(bounds, { padding: [42, 42], maxZoom: state === "ALL" ? 7 : 10, duration: 1.1 });
-      }
     });
+  }, [mapReady, visible, selected?.slug]);
+
+  useEffect(() => {
+    if (!mapReady || nearMode || !visible.length) return;
+    const bounds: [number, number][] = visible.map((location) => [location.latitude, location.longitude]);
+    mapRef.current.flyToBounds(bounds, { padding: [42, 42], maxZoom: state === "ALL" ? 7 : 10, duration: 1.05 });
   }, [mapReady, visible, nearMode, state]);
 
   useEffect(() => {
     if (!mapReady || !userPosition || !userLayerRef.current) return;
     import("leaflet").then((L) => {
       userLayerRef.current.clearLayers();
-      L.circleMarker([userPosition.latitude, userPosition.longitude], {
-        radius: 9,
-        color: "#044123",
-        weight: 3,
-        fillColor: "#ffffff",
-        fillOpacity: 1,
-      }).bindTooltip("Your location", { permanent: false, direction: "top" }).addTo(userLayerRef.current);
+      L.marker([userPosition.latitude, userPosition.longitude], {
+        icon: L.divIcon({ className: "wonder-user-shell", html: '<span class="wonder-user-pin"><b>🍽</b></span>', iconSize: [42, 48], iconAnchor: [21, 46] }),
+        zIndexOffset: 1000,
+      }).bindTooltip("You’re hungry here", { permanent: false, direction: "top", offset: [0, -38] }).addTo(userLayerRef.current);
     });
   }, [mapReady, userPosition]);
 
@@ -159,6 +160,16 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
     setSelected(null);
   };
 
+  const showFullNetwork = () => {
+    setNearMode(false);
+    setState("ALL");
+    setStatus("ALL");
+    setQuery("");
+    setSelected(null);
+    const bounds: [number, number][] = locations.map((location) => [location.latitude, location.longitude]);
+    mapRef.current?.flyToBounds(bounds, { padding: [42, 42], maxZoom: 7, duration: 1.15 });
+  };
+
   const changeFilter = (callback: () => void) => {
     setNearMode(false);
     callback();
@@ -202,6 +213,9 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
       </aside>
       <div className="map-wrap">
         <div ref={mapNode} className="map" />
+        <button className="map-home-button" onClick={showFullNetwork} aria-label="Show all locations" title="Show all locations">
+          <span className="home-glyph" aria-hidden="true" />
+        </button>
         <div className="map-key"><span className="open-dot" /> Open <span className="reno-dot hollow" /> Renovation <span className="reno-dot" /> Coming soon</div>
         {!mapReady && <div className="map-loading">Loading locations…</div>}
         {selected && <div className="detail-card">
@@ -221,4 +235,3 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
     </section>
   );
 }
-
