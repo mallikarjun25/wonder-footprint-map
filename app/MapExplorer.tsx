@@ -106,9 +106,10 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   }, []);
 
   useEffect(() => {
-    if (!mapReady || !mapRef.current || !layerRef.current) return;
+    const layer = layerRef.current;
+    if (!mapReady || !mapRef.current || !layer) return;
     import("leaflet").then((L) => {
-      layerRef.current.clearLayers();
+      layer.clearLayers();
       visible.forEach((location) => {
         const classes = [
           "wonder-map-pin",
@@ -120,7 +121,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
           icon: L.divIcon({ className: "wonder-pin-shell", html: `<span class="${classes}"></span>`, iconSize: [28, 28], iconAnchor: [14, 14] }),
           riseOnHover: true,
           riseOffset: 500,
-        }).addTo(layerRef.current);
+        }).addTo(layer);
         marker.bindTooltip(location.name, { direction: "top", offset: [0, -7] });
         marker.on("click", () => focusLocation(location));
       });
@@ -134,13 +135,14 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   }, [mapReady, visible, nearMode, state]);
 
   useEffect(() => {
-    if (!mapReady || !userPosition || !userLayerRef.current) return;
+    const userLayer = userLayerRef.current;
+    if (!mapReady || !userPosition || !userLayer) return;
     import("leaflet").then((L) => {
-      userLayerRef.current.clearLayers();
+      userLayer.clearLayers();
       L.marker([userPosition.latitude, userPosition.longitude], {
         icon: L.divIcon({ className: "wonder-user-shell", html: '<span class="wonder-user-pin"><b>🍽</b></span>', iconSize: [42, 48], iconAnchor: [21, 46] }),
         zIndexOffset: 1000,
-      }).bindTooltip("You’re hungry here", { permanent: false, direction: "top", offset: [0, -38] }).addTo(userLayerRef.current);
+      }).bindTooltip("You’re hungry here", { permanent: false, direction: "top", offset: [0, -38] }).addTo(userLayer);
     });
   }, [mapReady, userPosition]);
 

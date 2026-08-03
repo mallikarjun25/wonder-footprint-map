@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Create a production build with `npm run build`.
+Create a production build with `npm run build`. The application is a standard Next.js project suitable for Netlify's maintained Next.js runtime.
 
 ## Data and attribution
 
