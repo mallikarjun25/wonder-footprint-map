@@ -1,6 +1,9 @@
 name: Refresh Wonder locations
 
 on:
+  push:
+    paths:
+      - ".github/workflows/sync-locations.yml"
   schedule:
     - cron: "17 9 * * *"
   workflow_dispatch:
