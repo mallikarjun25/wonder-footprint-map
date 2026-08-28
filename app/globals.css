@@ -19,6 +19,8 @@ a { color: inherit; }
 
 .project-notice { min-height: 42px; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 9px 24px; background: var(--wonder-green); color: #fff; text-align: center; font-size: 12px; line-height: 1.35; }
 .project-notice strong { flex: 0 0 auto; padding-right: 12px; border-right: 1px solid rgba(255,255,255,.4); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.project-notice a { color: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(255,255,255,.55); text-underline-offset: 2px; transition: text-decoration-color .2s ease; }
+.project-notice a:hover { text-decoration-color: #fff; }
 
 .site-header {
   height: 80px; display: flex; align-items: center; padding: 0 32px; gap: 44px;
