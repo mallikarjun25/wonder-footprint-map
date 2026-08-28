@@ -255,7 +255,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
           <h2>{selected.name}</h2>
           <p>{selected.address}</p>
           {selected.distance !== undefined && <p className="distance-copy">Approximately {selected.distance.toFixed(1)} miles from you</p>}
-          {!selected.status && <div className={`hours-panel ${isOpenAt(selected, localMinutes(now, selected.timeZone)) ? "is-open" : "is-closed"}`}><span>{isOpenAt(selected, localMinutes(now, selected.timeZone)) ? "Open now" : "Closed now"}</span><strong>{selected.hoursLabel}</strong><small>Local time · automatically refreshed from the official directory</small></div>}
+          {!selected.status && <div className={`hours-panel ${isOpenAt(selected, localMinutes(now, selected.timeZone)) ? "is-open" : "is-closed"}`}><span>{isOpenAt(selected, localMinutes(now, selected.timeZone)) ? "Open now" : "Closed now"}</span><strong>{selected.hoursLabel}</strong><small>Published schedule · local time · confirm on the official listing</small></div>}
           {selected.status === "renovation" && <div className="status-note">Temporarily closed for renovations</div>}
           {selected.status === "coming-soon" && <div className="status-note">Announced for {selected.plannedFor}</div>}
           <div className="detail-actions">

@@ -18,7 +18,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run sync:locations
+      - name: Attempt directory refresh
+        id: sync
+        continue-on-error: true
+        run: npm run sync:locations
+      - name: Preserve the last validated snapshot when the source blocks automation
+        if: steps.sync.outcome == 'failure'
+        run: echo "::warning::Wonder's directory blocked the automated refresh. Keeping the last validated snapshot."
       - run: npm run lint
       - run: npm run build
       - name: Commit verified location changes

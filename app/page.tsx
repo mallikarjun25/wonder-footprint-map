@@ -47,8 +47,8 @@ export default function Home() {
         <div><b>↗</b><strong>{Object.keys(counts).length - 3} more markets</strong><em>and a growing national footprint</em></div>
       </section>
       <footer id="about">
-        <p><strong>Independent portfolio project.</strong> Not affiliated with or endorsed by Wonder Group, Inc. Wonder is a trademark of its respective owner. Location information and hours are automatically refreshed from Wonder’s public directory and may change; confirm time-sensitive details on the linked official listing. Most pins are address-geocoded; a small number use ZIP-level placement when an exact public geocode is unavailable.</p>
-        <p>Prepared by Mallikarjun Aitha · Directory refresh scheduled daily · Last verified {new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/New_York" }).format(new Date(dataUpdatedAt))}</p>
+        <p><strong>Independent portfolio project.</strong> Not affiliated with or endorsed by Wonder Group, Inc. Wonder is a trademark of its respective owner. Location information and published hours are sourced from Wonder’s public directory and may change; confirm time-sensitive details on the linked official listing. Most pins are address-geocoded; a small number use ZIP-level placement when an exact public geocode is unavailable.</p>
+        <p>Prepared by Mallikarjun Aitha · Last verified against the public directory {new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/New_York" }).format(new Date(dataUpdatedAt))}</p>
       </footer>
     </main>
   );
