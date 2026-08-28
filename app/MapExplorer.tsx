@@ -261,6 +261,7 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
           <div className="detail-actions">
             <a href={`https://www.wonder.com/food-delivery-locations/${selected.slug}`} target="_blank" rel="noreferrer">View official listing</a>
             {selected.status !== "coming-soon" && <a className="outline" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selected.address)}`} target="_blank" rel="noreferrer">Directions</a>}
+            <a className="outline" href={`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${selected.latitude}%2C${selected.longitude}`} target="_blank" rel="noreferrer">Street View</a>
           </div>
         </div>}
       </div>
