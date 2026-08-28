@@ -1,17 +1,10 @@
-import zipcodes from "zipcodes";
 import MapExplorer from "./MapExplorer";
-import { comingSoon, locations } from "./locations";
+import { dataUpdatedAt, locations } from "./locations";
 
 export default function Home() {
-  const openLocations = locations.flatMap((location) => {
-    const geo = zipcodes.lookup(location.zip);
-    return geo ? [{ ...location, latitude: geo.latitude, longitude: geo.longitude }] : [];
-  });
-  const geoLocations = [...openLocations, ...comingSoon.map((location) => ({
-    ...location,
-    latitude: location.latitude as number,
-    longitude: location.longitude as number,
-  }))];
+  const openLocations = locations.filter((location) => location.status !== "coming-soon");
+  const comingSoon = locations.filter((location) => location.status === "coming-soon");
+  const geoLocations = locations;
 
   const counts = geoLocations.reduce<Record<string, number>>((acc, location) => {
     acc[location.state] = (acc[location.state] || 0) + 1;
@@ -38,24 +31,24 @@ export default function Home() {
         <div>
           <span className="kicker">INDEPENDENT LOCATION EXPLORER</span>
           <h1>Wonder locations,<br/>mapped.</h1>
-          <p>Explore Wonder’s growing Northeast network, discover the closest open food hall, and see where the brand is heading next.</p>
+          <p>Explore Wonder’s growing network, discover the closest open food hall, and see where the brand is heading next.</p>
           <a className="hero-cta" href="#map">Explore the map <span>→</span></a>
         </div>
         <div className="hero-stats">
           <div><strong>{openLocations.length}</strong><span>listed locations</span></div>
           <div><strong>{comingSoon.length}</strong><span>coming soon</span></div>
-          <div><strong>{Object.keys(counts).length}</strong><span>markets across the Northeast</span></div>
+          <div><strong>{Object.keys(counts).length}</strong><span>states and districts</span></div>
         </div>
       </section>
       <div id="map"><MapExplorer locations={geoLocations} /></div>
       <section className="market-strip" id="network">
         <span>THE NETWORK</span>
         {topMarkets.map(([market, count], i) => <div key={market}><b>0{i + 1}</b><strong>{market}</strong><em>{count} locations</em></div>)}
-        <div><b>↗</b><strong>{Object.keys(counts).length - 3} more markets</strong><em>expanding across the Northeast</em></div>
+        <div><b>↗</b><strong>{Object.keys(counts).length - 3} more markets</strong><em>and a growing national footprint</em></div>
       </section>
       <footer id="about">
-        <p><strong>Independent portfolio project.</strong> Not affiliated with or endorsed by Wonder Group, Inc. Wonder is a trademark of its respective owner. Location information is derived from Wonder’s public directory and may change; confirm hours on the linked official listing. Planned-site markers represent the named market center until a street address is published.</p>
-        <p>Prepared by Mallikarjun Aitha · Data current August 3, 2026</p>
+        <p><strong>Independent portfolio project.</strong> Not affiliated with or endorsed by Wonder Group, Inc. Wonder is a trademark of its respective owner. Location information and hours are automatically refreshed from Wonder’s public directory and may change; confirm time-sensitive details on the linked official listing. Most pins are address-geocoded; a small number use ZIP-level placement when an exact public geocode is unavailable.</p>
+        <p>Prepared by Mallikarjun Aitha · Directory refresh scheduled daily · Last verified {new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/New_York" }).format(new Date(dataUpdatedAt))}</p>
       </footer>
     </main>
   );

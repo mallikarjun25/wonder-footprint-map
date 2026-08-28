@@ -18,6 +18,8 @@
 /.netlify/
 /.vinext/
 /out/
+/output/
+/tmp/
 
 # misc
 .DS_Store

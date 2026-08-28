@@ -1,0 +1,31 @@
+name: Refresh Wonder locations
+
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run sync:locations
+      - run: npm run lint
+      - run: npm run build
+      - name: Commit verified location changes
+        run: |
+          if git diff --quiet -- app/location-data.json; then exit 0; fi
+          git config user.name "wonder-location-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/location-data.json
+          git commit -m "Refresh Wonder location data"
+          git push

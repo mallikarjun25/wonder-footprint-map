@@ -7,8 +7,8 @@ type GeoLocation = Location & { latitude: number; longitude: number; distance?: 
 type UserPosition = { latitude: number; longitude: number };
 type Availability = "ALL" | "OPEN_NOW" | "CLOSED_NOW";
 
-function easternMinutes(date: Date) {
-  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(date);
+function localMinutes(date: Date, timeZone: string) {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(date);
   return Number(parts.find((part) => part.type === "hour")?.value) * 60 + Number(parts.find((part) => part.type === "minute")?.value);
 }
 
@@ -45,8 +45,6 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   const [locationState, setLocationState] = useState<"idle" | "locating" | "denied" | "unavailable">("idle");
 
   const states = useMemo(() => [...new Set(locations.map((l) => l.state))].sort(), [locations]);
-  const currentMinutes = easternMinutes(now);
-  const availabilityMinute = availability === "ALL" ? -1 : currentMinutes;
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60000);
     return () => window.clearInterval(timer);
@@ -55,9 +53,9 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
   const filtered = useMemo(() => locations.filter((location) =>
     (state === "ALL" || location.state === state) &&
     (status === "ALL" || (status === "COMING" ? location.status === "coming-soon" : location.status === "renovation")) &&
-    (availability === "ALL" || (location.status !== "coming-soon" && (availability === "OPEN_NOW" ? isOpenAt(location, availabilityMinute) : !isOpenAt(location, availabilityMinute)))) &&
+    (availability === "ALL" || (location.status !== "coming-soon" && (availability === "OPEN_NOW" ? isOpenAt(location, localMinutes(now, location.timeZone)) : !isOpenAt(location, localMinutes(now, location.timeZone))))) &&
     `${location.name} ${location.address}`.toLowerCase().includes(query.toLowerCase())
-  ), [locations, state, status, availability, query, availabilityMinute]);
+  ), [locations, state, status, availability, query, now]);
 
   const nearby = useMemo(() => {
     if (!userPosition) return [];
@@ -233,12 +231,12 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
             <button disabled={status !== "ALL"} className={availability === "CLOSED_NOW" && !nearMode ? "active" : ""} onClick={() => changeFilter(() => setAvailability("CLOSED_NOW"))}>Closed now</button>
           </div>
         </div>
-        <div className="result-head"><strong>{visible.length}</strong> {nearMode ? "nearest open locations" : "locations"} <span>•</span> {nearMode ? "sorted by distance" : state === "ALL" ? "Northeast network" : state}</div>
+        <div className="result-head"><strong>{visible.length}</strong> {nearMode ? `nearest open ${visible.length === 1 ? "location" : "locations"}` : visible.length === 1 ? "location" : "locations"} <span>•</span> {nearMode ? "sorted by distance" : state === "ALL" ? "Wonder network" : state}</div>
         <div className="location-list">
           {visible.map((location) => (
             <button key={location.slug} className={`location-card ${selected?.slug === location.slug ? "selected" : ""}`} onClick={() => focusLocation(location)}>
               <span className={`pin-dot ${location.status === "coming-soon" ? "planned" : ""}`} />
-              <span><strong>{location.name}</strong><small>{location.address}</small>{location.distance !== undefined && <em className="distance">{location.distance.toFixed(1)} miles away</em>}{!location.status && <em className={isOpenAt(location, currentMinutes) ? "live-open" : "live-closed"}>{isOpenAt(location, currentMinutes) ? "Open now" : "Closed now"}</em>}{location.status === "renovation" && <em>Closed for renovations</em>}{location.status === "coming-soon" && <em>Coming {location.plannedFor}</em>}</span>
+              <span><strong>{location.name}</strong><small>{location.address}</small>{location.distance !== undefined && <em className="distance">{location.distance.toFixed(1)} miles away</em>}{!location.status && <em className={isOpenAt(location, localMinutes(now, location.timeZone)) ? "live-open" : "live-closed"}>{isOpenAt(location, localMinutes(now, location.timeZone)) ? "Open now" : "Closed now"}</em>}{location.status === "renovation" && <em>Closed for renovations</em>}{location.status === "coming-soon" && <em>Coming {location.plannedFor}</em>}</span>
               <span aria-hidden="true">→</span>
             </button>
           ))}
@@ -257,9 +255,9 @@ export default function MapExplorer({ locations }: { locations: GeoLocation[] })
           <h2>{selected.name}</h2>
           <p>{selected.address}</p>
           {selected.distance !== undefined && <p className="distance-copy">Approximately {selected.distance.toFixed(1)} miles from you</p>}
-          {!selected.status && <div className={`hours-panel ${isOpenAt(selected, currentMinutes) ? "is-open" : "is-closed"}`}><span>{isOpenAt(selected, currentMinutes) ? "Open now" : "Closed now"}</span><strong>{selected.hoursLabel}</strong><small>Eastern Time · confirm on the official listing</small></div>}
+          {!selected.status && <div className={`hours-panel ${isOpenAt(selected, localMinutes(now, selected.timeZone)) ? "is-open" : "is-closed"}`}><span>{isOpenAt(selected, localMinutes(now, selected.timeZone)) ? "Open now" : "Closed now"}</span><strong>{selected.hoursLabel}</strong><small>Local time · automatically refreshed from the official directory</small></div>}
           {selected.status === "renovation" && <div className="status-note">Temporarily closed for renovations</div>}
-          {selected.status === "coming-soon" && <div className="status-note">Announced for {selected.plannedFor} · exact address not yet published</div>}
+          {selected.status === "coming-soon" && <div className="status-note">Announced for {selected.plannedFor}</div>}
           <div className="detail-actions">
             <a href={`https://www.wonder.com/food-delivery-locations/${selected.slug}`} target="_blank" rel="noreferrer">View official listing</a>
             {selected.status !== "coming-soon" && <a className="outline" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selected.address)}`} target="_blank" rel="noreferrer">Directions</a>}
