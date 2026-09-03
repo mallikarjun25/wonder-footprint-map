@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = resolve(ROOT, "app/location-data.json");
 const DIRECTORY_URL = "https://www.wonder.com/food-delivery-locations";
-const READER_PREFIX = "https://r.jina.ai/http://www.wonder.com";
+const READER_PREFIX = "https://r.jina.ai/https://www.wonder.com";
 const TIME_ZONE_BY_STATE = { TX: "America/Chicago" };
 
 function argument(name) {
@@ -90,12 +90,19 @@ async function geocode(stores, previousBySlug) {
 }
 
 async function fetchReader(path) {
-  // A date-scoped URL avoids stale shared-reader cache entries while keeping
-  // repeated runs on the same day cache-friendly.
-  const refreshKey = new Date().toISOString().slice(0, 10);
-  const response = await fetch(`${READER_PREFIX}${path}?portfolio_sync=${refreshKey}`, { headers: { Accept: "text/plain" } });
-  if (!response.ok) throw new Error(`Public directory reader failed with ${response.status}`);
-  return response.text();
+  // The shared reader occasionally serves a cached tracking redirect for this
+  // site. Retry with a unique source URL instead of accepting that tiny page as
+  // valid Wonder content.
+  const keys = [new Date().toISOString().slice(0, 10), `${Date.now()}`, `${Date.now()}-${Math.random()}`];
+  for (const refreshKey of keys) {
+    const response = await fetch(`${READER_PREFIX}${path}?portfolio_sync=${refreshKey}`, {
+      headers: { Accept: "text/plain", "X-No-Cache": "true" },
+    });
+    if (!response.ok) continue;
+    const text = await response.text();
+    if (text.length > 1000 && !text.includes("match.adsrvr.org")) return text;
+  }
+  throw new Error(`Public directory reader returned no valid Wonder content for ${path}`);
 }
 
 async function scrapeViaReader() {
@@ -104,7 +111,12 @@ async function scrapeViaReader() {
   const pattern = /^(?:##\s+)?\[([^\n]+)\]\(https?:\/\/www\.wonder\.com\/food-delivery-locations\/([^)]+)\)$/gm;
   for (const match of markdown.matchAll(pattern)) {
     if (!/Order now|Learn more/.test(match[1])) continue;
-    cards.push({ slug: match[2], text: match[1].replaceAll(" ## ", "\n").replaceAll(" ### ", "\n").replace(/^##\s*/, "") });
+    const text = match[1]
+      .replaceAll(" ## ", "\n")
+      .replaceAll(" ### ", "\n")
+      .replace(/^##\s*/, "")
+      .replace(/\s+(?:Order now|Learn more)$/i, "");
+    cards.push({ slug: match[2], text });
   }
   return { cards };
 }
@@ -143,7 +155,9 @@ if (source.jsonLd) {
     const address = lines[offset + 1];
     const parsed = parseAddress(address);
     const old = previousBySlug.get(slug);
-    let hours = old ? { hoursLabel: old.hoursLabel, opensAt: old.opensAt, closesAt: old.closesAt } : {};
+    let hours = old && (plannedMatch || old.status === undefined)
+      ? { hoursLabel: old.hoursLabel, opensAt: old.opensAt, closesAt: old.closesAt }
+      : {};
     if (!plannedMatch && (!old || old.status === "coming-soon" || !old.hoursLabel)) {
       const detail = await fetchReader(`/food-delivery-locations/${slug}`);
       const hoursMatch = detail.match(/\nHOURS\s*\n\s*([^\n]+)/i);

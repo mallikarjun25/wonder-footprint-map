@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-08-27T23:02:05.733Z",
+  "updatedAt": "2026-09-03T19:03:41.325Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -1796,6 +1796,21 @@
       "coordinatePrecision": "zip"
     },
     {
+      "name": "Falls Church",
+      "address": "100 West Broad Street, Falls Church, VA 22046",
+      "street": "100 West Broad Street",
+      "city": "Falls Church",
+      "state": "VA",
+      "zip": "22046",
+      "slug": "falls-church",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 38.882340879902,
+      "longitude": -77.171151118717
+    },
+    {
       "name": "New Haven",
       "address": "276 Elm Street, New Haven, CT 06511",
       "street": "276 Elm Street",
@@ -2092,7 +2107,6 @@
       "zip": "06611",
       "slug": "trumbull",
       "timeZone": "America/New_York",
-      "status": "renovation",
       "hoursLabel": "Daily · 10:30am–11:30pm",
       "opensAt": 630,
       "closesAt": 1410,
@@ -2295,6 +2309,21 @@
       "longitude": -72.920742573291
     },
     {
+      "name": "Indian Orchard",
+      "address": "1284 Boston Road, Springfield, MA 01119",
+      "street": "1284 Boston Road",
+      "city": "Springfield",
+      "state": "MA",
+      "zip": "01119",
+      "slug": "indian-orchard",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 42.140581141415,
+      "longitude": -72.500671670564
+    },
+    {
       "name": "Salem",
       "address": "125A South Broadway, Salem, NH 03079",
       "street": "125A South Broadway",
@@ -2325,6 +2354,21 @@
       "longitude": -76.9173306
     },
     {
+      "name": "Millbury",
+      "address": "70 Worcester-Providence Turnpike, Millbury, MA 01527",
+      "street": "70 Worcester-Providence Turnpike",
+      "city": "Millbury",
+      "state": "MA",
+      "zip": "01527",
+      "slug": "millbury",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 42.1967955,
+      "longitude": -71.7776713
+    },
+    {
       "name": "Glen Cove",
       "address": "177 Glen Street, Glen Cove, NY 11542",
       "street": "177 Glen Street",
@@ -2340,23 +2384,6 @@
       "closesAt": 1170,
       "latitude": 40.862266094139,
       "longitude": -73.623207092404
-    },
-    {
-      "name": "Falls Church",
-      "address": "100 West Broad Street, Falls Church, VA 22046",
-      "street": "100 West Broad Street",
-      "city": "Falls Church",
-      "state": "VA",
-      "zip": "22046",
-      "slug": "falls-church",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 38.882340879902,
-      "longitude": -77.171151118717
     },
     {
       "name": "Brookline",
@@ -2496,23 +2523,6 @@
       "longitude": -76.821031924276
     },
     {
-      "name": "Indian Orchard",
-      "address": "1284 Boston Road, Springfield, MA 01119",
-      "street": "1284 Boston Road",
-      "city": "Springfield",
-      "state": "MA",
-      "zip": "01119",
-      "slug": "indian-orchard",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 42.140581141415,
-      "longitude": -72.500671670564
-    },
-    {
       "name": "Gravesend",
       "address": "481 Kings Highway, Brooklyn, NY 11223",
       "street": "481 Kings Highway",
@@ -2564,38 +2574,32 @@
       "longitude": -73.456099652597
     },
     {
-      "name": "McKinney",
-      "address": "8555 West University Drive, McKinney, TX 75071",
-      "street": "8555 West University Drive",
-      "city": "McKinney",
-      "state": "TX",
-      "zip": "75071",
-      "slug": "mckinney",
-      "timeZone": "America/Chicago",
-      "status": "coming-soon",
-      "plannedFor": "February 2027",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 33.2180548,
-      "longitude": -96.6938864
-    },
-    {
-      "name": "Millbury",
-      "address": "70 Worcester-Providence Turnpike, Millbury, MA 01527",
-      "street": "70 Worcester-Providence Turnpike",
-      "city": "Millbury",
-      "state": "MA",
-      "zip": "01527",
-      "slug": "millbury",
+      "name": "Prince Frederick",
+      "address": "625 Solomons Island Road North, Prince Frederick, MD 20678",
+      "street": "625 Solomons Island Road North",
+      "city": "Prince Frederick",
+      "state": "MD",
+      "zip": "20678",
+      "slug": "prince-frederick",
       "timeZone": "America/New_York",
       "status": "coming-soon",
       "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 42.1967955,
-      "longitude": -71.7776713
+      "latitude": 38.5537184,
+      "longitude": -76.5932369
+    },
+    {
+      "name": "Gambrills",
+      "address": "1352 Main Chapel Way, Gambrills, MD 21054",
+      "street": "1352 Main Chapel Way",
+      "city": "Gambrills",
+      "state": "MD",
+      "zip": "21054",
+      "slug": "gambrills",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "October 2026",
+      "latitude": 39.037795540771,
+      "longitude": -76.680184805852
     }
   ]
 }
