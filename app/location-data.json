@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-09-04T13:34:28.321Z",
+  "updatedAt": "2026-09-05T12:46:33.104Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -1156,10 +1156,6 @@
       "zip": "06820",
       "slug": "darien",
       "timeZone": "America/New_York",
-      "status": "renovation",
-      "hoursLabel": "Daily · 10:30am–11:30pm",
-      "opensAt": 630,
-      "closesAt": 1410,
       "latitude": 41.086951290074,
       "longitude": -73.460138328841
     },
