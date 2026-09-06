@@ -186,6 +186,15 @@ const locations = stores.map((store) => {
   const usesZipCenter = zipCenter && point.latitude === zipCenter.latitude && point.longitude === zipCenter.longitude;
   return { ...store, ...point, ...(usesZipCenter ? { coordinatePrecision: "zip" } : {}) };
 });
+
+// A successful verification is not itself a data change. Avoid rewriting the
+// timestamp, committing, and triggering a paid production deploy when the
+// public directory still contains the same records.
+if (JSON.stringify(locations) === JSON.stringify(previous.locations)) {
+  console.log(`Verified ${locations.length} locations; no data changes detected.`);
+  process.exit(0);
+}
+
 const payload = {
   source: DIRECTORY_URL,
   updatedAt: new Date().toISOString(),

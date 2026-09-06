@@ -5,7 +5,8 @@ on:
     paths:
       - ".github/workflows/sync-locations.yml"
   schedule:
-    - cron: "17 9 * * *"
+    # Weekly checks conserve Netlify's free-plan production-deploy credits.
+    - cron: "17 9 * * 1"
   workflow_dispatch:
 
 permissions:
