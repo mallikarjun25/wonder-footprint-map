@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-09-07T15:06:19.633Z",
+  "updatedAt": "2026-09-09T06:20:15.055Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -945,10 +945,6 @@
       "zip": "19147",
       "slug": "south-philly",
       "timeZone": "America/New_York",
-      "status": "renovation",
-      "hoursLabel": "Daily · 10:30am–11:30pm",
-      "opensAt": 630,
-      "closesAt": 1410,
       "latitude": 39.938991574893,
       "longitude": -75.166371590881
     },
@@ -1338,10 +1334,6 @@
       "zip": "19422",
       "slug": "blue-bell",
       "timeZone": "America/New_York",
-      "status": "renovation",
-      "hoursLabel": "Daily · 10:30am–11:30pm",
-      "opensAt": 630,
-      "closesAt": 1410,
       "latitude": 40.165960966503,
       "longitude": -75.291256507981
     },
