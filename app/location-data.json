@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-09-09T06:25:01.183Z",
+  "updatedAt": "2026-09-14T15:55:55.042Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -361,21 +361,6 @@
       "closesAt": 1320,
       "latitude": 41.855859869702,
       "longitude": -71.354505365891
-    },
-    {
-      "name": "Midtown East",
-      "address": "800 3rd Avenue, New York, NY 10022",
-      "street": "800 3rd Avenue",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10022",
-      "slug": "midtown-east",
-      "timeZone": "America/New_York",
-      "hoursLabel": "Daily · 10:30am–11:30pm",
-      "opensAt": 630,
-      "closesAt": 1410,
-      "latitude": 40.755273688948,
-      "longitude": -73.971248241557
     },
     {
       "name": "Forest Hills",
@@ -2068,6 +2053,21 @@
       "longitude": -75.4128064
     },
     {
+      "name": "Smoketown Station",
+      "address": "13257 Worth Avenue, Woodbridge, VA 22192",
+      "street": "13257 Worth Avenue",
+      "city": "Woodbridge",
+      "state": "VA",
+      "zip": "22192",
+      "slug": "smoketown-station",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 38.650177668722,
+      "longitude": -77.294794507406
+    },
+    {
       "name": "Danbury",
       "address": "132 Federal Road, Danbury, CT 06811",
       "street": "132 Federal Road",
@@ -2309,19 +2309,34 @@
       "longitude": -72.920742573291
     },
     {
-      "name": "Indian Orchard",
+      "name": "Boston Road",
       "address": "1284 Boston Road, Springfield, MA 01119",
       "street": "1284 Boston Road",
       "city": "Springfield",
       "state": "MA",
       "zip": "01119",
-      "slug": "indian-orchard",
+      "slug": "boston-road",
       "timeZone": "America/New_York",
       "hoursLabel": "Daily · 10:30am–11:30pm",
       "opensAt": 630,
       "closesAt": 1410,
       "latitude": 42.140581141415,
       "longitude": -72.500671670564
+    },
+    {
+      "name": "Jamaica",
+      "address": "165-25 Jamaica Avenue, Queens, NY 11432",
+      "street": "165-25 Jamaica Avenue",
+      "city": "Queens",
+      "state": "NY",
+      "zip": "11432",
+      "slug": "jamaica",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:00pm",
+      "opensAt": 630,
+      "closesAt": 1380,
+      "latitude": 40.705616425298,
+      "longitude": -73.794667054943
     },
     {
       "name": "Salem",
@@ -2369,6 +2384,23 @@
       "longitude": -71.7776713
     },
     {
+      "name": "Midtown East",
+      "address": "800 3rd Avenue, New York, NY 10022",
+      "street": "800 3rd Avenue",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10022",
+      "slug": "midtown-east",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "November 2024",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 40.755273688948,
+      "longitude": -73.971248241557
+    },
+    {
       "name": "Glen Cove",
       "address": "177 Glen Street, Glen Cove, NY 11542",
       "street": "177 Glen Street",
@@ -2403,19 +2435,16 @@
       "longitude": -71.125936380367
     },
     {
-      "name": "Montgomery Plaza",
+      "name": "Montgomery Promenade",
       "address": "3 Nevius Boulevard, Princeton, NJ 08540",
       "street": "3 Nevius Boulevard",
       "city": "Princeton",
       "state": "NJ",
       "zip": "08540",
-      "slug": "montgomery-plaza",
+      "slug": "montgomery-promenade",
       "timeZone": "America/New_York",
       "status": "coming-soon",
       "plannedFor": "October 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
       "latitude": 40.3666,
       "longitude": -74.6408,
       "coordinatePrecision": "zip"
@@ -2472,23 +2501,6 @@
       "longitude": -74.0275022
     },
     {
-      "name": "Smoketown Station",
-      "address": "13257 Worth Avenue, Woodbridge, VA 22192",
-      "street": "13257 Worth Avenue",
-      "city": "Woodbridge",
-      "state": "VA",
-      "zip": "22192",
-      "slug": "smoketown-station",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 38.650177668722,
-      "longitude": -77.294794507406
-    },
-    {
       "name": "Farmington Valley",
       "address": "110 Albany Turnpike, Canton, CT 06019",
       "street": "110 Albany Turnpike",
@@ -2498,7 +2510,7 @@
       "slug": "farmington-valley",
       "timeZone": "America/New_York",
       "status": "coming-soon",
-      "plannedFor": "September 2026",
+      "plannedFor": "October 2026",
       "hoursLabel": "Daily · 8:00am–7:30pm",
       "opensAt": 480,
       "closesAt": 1170,
@@ -2540,23 +2552,6 @@
       "longitude": -73.972113269362
     },
     {
-      "name": "Jamaica",
-      "address": "165-25 Jamaica Avenue, Queens, NY 11432",
-      "street": "165-25 Jamaica Avenue",
-      "city": "Queens",
-      "state": "NY",
-      "zip": "11432",
-      "slug": "jamaica",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 40.705616425298,
-      "longitude": -73.794667054943
-    },
-    {
       "name": "Massapequa Park",
       "address": "1004 Park Boulevard, Massapequa Park, NY 11762",
       "street": "1004 Park Boulevard",
@@ -2586,6 +2581,20 @@
       "plannedFor": "September 2026",
       "latitude": 38.5537184,
       "longitude": -76.5932369
+    },
+    {
+      "name": "Largo",
+      "address": "10582 Campus Way South, Kettering, MD 20774",
+      "street": "10582 Campus Way South",
+      "city": "Kettering",
+      "state": "MD",
+      "zip": "20774",
+      "slug": "largo",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "October 2026",
+      "latitude": 38.896893270885,
+      "longitude": -76.822897516773
     },
     {
       "name": "Gambrills",
