@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-09-14T15:55:55.042Z",
+  "updatedAt": "2026-09-21T15:56:02.398Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -266,6 +266,7 @@
       "zip": "11238",
       "slug": "bedstuyclinton-hill",
       "timeZone": "America/New_York",
+      "status": "renovation",
       "hoursLabel": "Daily · 10:30am–11:30pm",
       "opensAt": 630,
       "closesAt": 1410,
@@ -361,6 +362,21 @@
       "closesAt": 1320,
       "latitude": 41.855859869702,
       "longitude": -71.354505365891
+    },
+    {
+      "name": "Midtown East",
+      "address": "800 3rd Avenue, New York, NY 10022",
+      "street": "800 3rd Avenue",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10022",
+      "slug": "midtown-east",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 40.755273688948,
+      "longitude": -73.971248241557
     },
     {
       "name": "Forest Hills",
@@ -1826,6 +1842,21 @@
       "longitude": -70.946830643974
     },
     {
+      "name": "Brookline",
+      "address": "392 Harvard Street, Brookline, MA 02446",
+      "street": "392 Harvard Street",
+      "city": "Brookline",
+      "state": "MA",
+      "zip": "02446",
+      "slug": "brookline",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 42.34470366236,
+      "longitude": -71.125936380367
+    },
+    {
       "name": "Manassas",
       "address": "9508 Liberia Avenue, Manassas, VA 20110",
       "street": "9508 Liberia Avenue",
@@ -2294,6 +2325,21 @@
       "longitude": -73.727934137607
     },
     {
+      "name": "Columbia",
+      "address": "6490 Dobbin Center Way, Columbia, MD 21045",
+      "street": "6490 Dobbin Center Way",
+      "city": "Columbia",
+      "state": "MD",
+      "zip": "21045",
+      "slug": "columbia",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 39.197434607076,
+      "longitude": -76.821031924276
+    },
+    {
       "name": "Hamden",
       "address": "2100 Dixwell Avenue, Hamden, CT 06514",
       "street": "2100 Dixwell Avenue",
@@ -2384,21 +2430,19 @@
       "longitude": -71.7776713
     },
     {
-      "name": "Midtown East",
-      "address": "800 3rd Avenue, New York, NY 10022",
-      "street": "800 3rd Avenue",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10022",
-      "slug": "midtown-east",
+      "name": "Prince Frederick",
+      "address": "625 Solomons Island Road North, Prince Frederick, MD 20678",
+      "street": "625 Solomons Island Road North",
+      "city": "Prince Frederick",
+      "state": "MD",
+      "zip": "20678",
+      "slug": "prince-frederick",
       "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "November 2024",
       "hoursLabel": "Daily · 10:30am–11:30pm",
       "opensAt": 630,
       "closesAt": 1410,
-      "latitude": 40.755273688948,
-      "longitude": -73.971248241557
+      "latitude": 38.5537184,
+      "longitude": -76.5932369
     },
     {
       "name": "Glen Cove",
@@ -2416,23 +2460,6 @@
       "closesAt": 1170,
       "latitude": 40.862266094139,
       "longitude": -73.623207092404
-    },
-    {
-      "name": "Brookline",
-      "address": "392 Harvard Street, Brookline, MA 02446",
-      "street": "392 Harvard Street",
-      "city": "Brookline",
-      "state": "MA",
-      "zip": "02446",
-      "slug": "brookline",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 42.34470366236,
-      "longitude": -71.125936380367
     },
     {
       "name": "Montgomery Promenade",
@@ -2518,21 +2545,18 @@
       "longitude": -72.884557268434
     },
     {
-      "name": "Columbia",
-      "address": "6490 Dobbin Center Way, Columbia, MD 21045",
-      "street": "6490 Dobbin Center Way",
-      "city": "Columbia",
-      "state": "MD",
-      "zip": "21045",
-      "slug": "columbia",
+      "name": "Middletown Warwick",
+      "address": "455 Middletown Warwick Road, Middletown, DE 19709",
+      "street": "455 Middletown Warwick Road",
+      "city": "Middletown",
+      "state": "DE",
+      "zip": "19709",
+      "slug": "middletown-warwick",
       "timeZone": "America/New_York",
       "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 39.197434607076,
-      "longitude": -76.821031924276
+      "plannedFor": "October 2026",
+      "latitude": 39.452914893539,
+      "longitude": -75.724434503801
     },
     {
       "name": "Gravesend",
@@ -2569,20 +2593,6 @@
       "longitude": -73.456099652597
     },
     {
-      "name": "Prince Frederick",
-      "address": "625 Solomons Island Road North, Prince Frederick, MD 20678",
-      "street": "625 Solomons Island Road North",
-      "city": "Prince Frederick",
-      "state": "MD",
-      "zip": "20678",
-      "slug": "prince-frederick",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "September 2026",
-      "latitude": 38.5537184,
-      "longitude": -76.5932369
-    },
-    {
       "name": "Largo",
       "address": "10582 Campus Way South, Kettering, MD 20774",
       "street": "10582 Campus Way South",
@@ -2609,6 +2619,20 @@
       "plannedFor": "October 2026",
       "latitude": 39.037795540771,
       "longitude": -76.680184805852
+    },
+    {
+      "name": "Bellingham",
+      "address": "255 Hartford Ave, Bellingham, MA 02019",
+      "street": "255 Hartford Ave",
+      "city": "Bellingham",
+      "state": "MA",
+      "zip": "02019",
+      "slug": "bellingham",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 42.114026652921,
+      "longitude": -71.469802170865
     }
   ]
 }
