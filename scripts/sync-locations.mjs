@@ -155,15 +155,51 @@ if (source.jsonLd) {
     const address = lines[offset + 1];
     const parsed = parseAddress(address);
     const old = previousBySlug.get(slug);
-    let hours = old && (plannedMatch || old.status === undefined)
+    let status = plannedMatch ? "coming-soon" : renovation ? "renovation" : undefined;
+    let plannedFor = plannedMatch?.[1];
+    let hours = old?.hoursLabel
       ? { hoursLabel: old.hoursLabel, opensAt: old.opensAt, closesAt: old.closesAt }
       : {};
     if (!plannedMatch && (!old || old.status === "coming-soon" || !old.hoursLabel)) {
-      const detail = await fetchReader(`/food-delivery-locations/${slug}`);
-      const hoursMatch = detail.match(/\nHOURS\s*\n\s*([^\n]+)/i);
-      if (hoursMatch) hours = parseHours([hoursMatch[1].trim()]);
+      try {
+        const detail = await fetchReader(`/food-delivery-locations/${slug}`);
+        const detailPlanned = detail.match(/COMING SOON\s*-\s*([^\n]+)/i);
+        const detailRenovation = /Closed for renovations/i.test(detail);
+        const hoursMatch = detail.match(/\nHOURS\s*\n\s*([^\n]+)/i);
+        if (detailPlanned) {
+          status = "coming-soon";
+          plannedFor = detailPlanned[1].trim();
+        } else if (detailRenovation) {
+          status = "renovation";
+        } else if (hoursMatch) {
+          status = undefined;
+          plannedFor = undefined;
+          hours = parseHours([hoursMatch[1].trim()]);
+        } else if (old?.status) {
+          status = old.status;
+          plannedFor = old.plannedFor;
+        }
+      } catch (error) {
+        // A single location page may be temporarily unavailable even when the
+        // authoritative directory is healthy. Keep the location in the map
+        // and recover its hours on a later refresh instead of rejecting the
+        // complete directory update.
+        console.warn(`Could not refresh hours for ${slug}: ${error.message}`);
+        if (old?.status) {
+          status = old.status;
+          plannedFor = old.plannedFor;
+        }
+      }
     }
-    return { name, ...parsed, slug, timeZone: TIME_ZONE_BY_STATE[parsed.state] || "America/New_York", status: plannedMatch ? "coming-soon" : renovation ? "renovation" : undefined, plannedFor: plannedMatch?.[1], ...hours };
+    return {
+      name,
+      ...parsed,
+      slug,
+      timeZone: TIME_ZONE_BY_STATE[parsed.state] || "America/New_York",
+      ...(status ? { status } : {}),
+      ...(plannedFor ? { plannedFor } : {}),
+      ...hours,
+    };
   }));
 }
 

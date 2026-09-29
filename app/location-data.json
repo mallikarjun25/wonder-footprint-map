@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-09-21T15:56:02.398Z",
+  "updatedAt": "2026-09-29T04:15:44.732Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -266,7 +266,6 @@
       "zip": "11238",
       "slug": "bedstuyclinton-hill",
       "timeZone": "America/New_York",
-      "status": "renovation",
       "hoursLabel": "Daily · 10:30am–11:30pm",
       "opensAt": 630,
       "closesAt": 1410,
@@ -2055,8 +2054,8 @@
     },
     {
       "name": "Yorktown Heights",
-      "address": "370 Underhill Avenue, Yorktown Heights, NY 10598",
-      "street": "370 Underhill Avenue",
+      "address": "1730 Underhill Circle, Yorktown Heights, NY 10598",
+      "street": "1730 Underhill Circle",
       "city": "Yorktown Heights",
       "state": "NY",
       "zip": "10598",
@@ -2065,8 +2064,9 @@
       "hoursLabel": "Daily · 10:30am–11:30pm",
       "opensAt": 630,
       "closesAt": 1410,
-      "latitude": 41.267331137051,
-      "longitude": -73.786158613217
+      "latitude": 41.2999,
+      "longitude": -73.7924,
+      "coordinatePrecision": "zip"
     },
     {
       "name": "Center Valley",
@@ -2112,6 +2112,21 @@
       "closesAt": 1410,
       "latitude": 41.426917145926,
       "longitude": -73.418559644035
+    },
+    {
+      "name": "Farmington Valley",
+      "address": "110 Albany Turnpike, Canton, CT 06019",
+      "street": "110 Albany Turnpike",
+      "city": "Canton",
+      "state": "CT",
+      "zip": "06019",
+      "slug": "farmington-valley",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–9:00pm",
+      "opensAt": 630,
+      "closesAt": 1260,
+      "latitude": 41.824111643574,
+      "longitude": -72.884557268434
     },
     {
       "name": "Lancaster",
@@ -2385,6 +2400,20 @@
       "longitude": -73.794667054943
     },
     {
+      "name": "Massapequa Park",
+      "address": "1004 Park Boulevard, Massapequa Park, NY 11762",
+      "street": "1004 Park Boulevard",
+      "city": "Massapequa Park",
+      "state": "NY",
+      "zip": "11762",
+      "slug": "massapequa-park",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "October 2026",
+      "latitude": 40.678213357879,
+      "longitude": -73.456099652597
+    },
+    {
       "name": "Salem",
       "address": "125A South Broadway, Salem, NH 03079",
       "street": "125A South Broadway",
@@ -2446,8 +2475,8 @@
     },
     {
       "name": "Glen Cove",
-      "address": "177 Glen Street, Glen Cove, NY 11542",
-      "street": "177 Glen Street",
+      "address": "167 Glen Street, Glen Cove, NY 11542",
+      "street": "167 Glen Street",
       "city": "Glen Cove",
       "state": "NY",
       "zip": "11542",
@@ -2458,8 +2487,8 @@
       "hoursLabel": "Daily · 8:00am–7:30pm",
       "opensAt": 480,
       "closesAt": 1170,
-      "latitude": 40.862266094139,
-      "longitude": -73.623207092404
+      "latitude": 40.862451744067,
+      "longitude": -73.623384101771
     },
     {
       "name": "Montgomery Promenade",
@@ -2478,9 +2507,9 @@
     },
     {
       "name": "Fresh Meadows",
-      "address": "70-11 Parsons Boulevard, Queens, NY 11365",
+      "address": "70-11 Parsons Boulevard, Fresh Meadows, NY 11365",
       "street": "70-11 Parsons Boulevard",
-      "city": "Queens",
+      "city": "Fresh Meadows",
       "state": "NY",
       "zip": "11365",
       "slug": "fresh-meadows",
@@ -2490,13 +2519,13 @@
       "hoursLabel": "Daily · 8:00am–7:30pm",
       "opensAt": 480,
       "closesAt": 1170,
-      "latitude": 40.732072663695,
-      "longitude": -73.810712357116
+      "latitude": 40.732072095009,
+      "longitude": -73.810712447835
     },
     {
       "name": "Bayside",
-      "address": "215-16 Northern Boulevard, Queens, NY 11361",
-      "street": "215-16 Northern Boulevard",
+      "address": "215-16 Northern Blvd, Queens, NY 11361",
+      "street": "215-16 Northern Blvd",
       "city": "Queens",
       "state": "NY",
       "zip": "11361",
@@ -2507,13 +2536,13 @@
       "hoursLabel": "Daily · 8:00am–7:30pm",
       "opensAt": 480,
       "closesAt": 1170,
-      "latitude": 40.76053559102,
-      "longitude": -73.766917518191
+      "latitude": 40.76053591008,
+      "longitude": -73.766917343142
     },
     {
       "name": "Emerson",
-      "address": "484 Kinderkamack Road, Emerson, NJ 07630",
-      "street": "484 Kinderkamack Road",
+      "address": "484 Kinderkamack Rd, Emerson, NJ 07630",
+      "street": "484 Kinderkamack Rd",
       "city": "Emerson",
       "state": "NJ",
       "zip": "07630",
@@ -2528,26 +2557,23 @@
       "longitude": -74.0275022
     },
     {
-      "name": "Farmington Valley",
-      "address": "110 Albany Turnpike, Canton, CT 06019",
-      "street": "110 Albany Turnpike",
-      "city": "Canton",
-      "state": "CT",
-      "zip": "06019",
-      "slug": "farmington-valley",
+      "name": "Lindenhurst",
+      "address": "52-54 East Sunrise Highway, Lindenhurst, NY 11757",
+      "street": "52-54 East Sunrise Highway",
+      "city": "Lindenhurst",
+      "state": "NY",
+      "zip": "11757",
+      "slug": "lindenhurst",
       "timeZone": "America/New_York",
       "status": "coming-soon",
-      "plannedFor": "October 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 41.824111643574,
-      "longitude": -72.884557268434
+      "plannedFor": "November 2026",
+      "latitude": 40.700554070848,
+      "longitude": -73.379850721598
     },
     {
       "name": "Middletown Warwick",
-      "address": "455 Middletown Warwick Road, Middletown, DE 19709",
-      "street": "455 Middletown Warwick Road",
+      "address": "455 Middletown Warwick Rd, Middletown, DE 19709",
+      "street": "455 Middletown Warwick Rd",
       "city": "Middletown",
       "state": "DE",
       "zip": "19709",
@@ -2555,8 +2581,8 @@
       "timeZone": "America/New_York",
       "status": "coming-soon",
       "plannedFor": "October 2026",
-      "latitude": 39.452914893539,
-      "longitude": -75.724434503801
+      "latitude": 39.452913818458,
+      "longitude": -75.724435811985
     },
     {
       "name": "Gravesend",
@@ -2576,35 +2602,60 @@
       "longitude": -73.972113269362
     },
     {
-      "name": "Massapequa Park",
-      "address": "1004 Park Boulevard, Massapequa Park, NY 11762",
-      "street": "1004 Park Boulevard",
-      "city": "Massapequa Park",
-      "state": "NY",
-      "zip": "11762",
-      "slug": "massapequa-park",
+      "name": "Burtonsville",
+      "address": "15701 Old Columbia Pike, suite 80, Burtonsville, MD 20866",
+      "street": "15701 Old Columbia Pike, suite 80",
+      "city": "Burtonsville",
+      "state": "MD",
+      "zip": "20866",
+      "slug": "burtonsville",
       "timeZone": "America/New_York",
       "status": "coming-soon",
       "plannedFor": "October 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 40.678213357879,
-      "longitude": -73.456099652597
+      "latitude": 39.112777380977,
+      "longitude": -76.932525572659
+    },
+    {
+      "name": "Eldersburg",
+      "address": "6400 Ridge Road, Sykesville, MD 21784",
+      "street": "6400 Ridge Road",
+      "city": "Sykesville",
+      "state": "MD",
+      "zip": "21784",
+      "slug": "eldersburg",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "November 2026",
+      "latitude": 39.393782470897,
+      "longitude": -76.932376464469
+    },
+    {
+      "name": "Worcester",
+      "address": "14 Park ave, Worcester, MA 01605",
+      "street": "14 Park ave",
+      "city": "Worcester",
+      "state": "MA",
+      "zip": "01605",
+      "slug": "worcester",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "October 2026",
+      "latitude": 42.283349932349,
+      "longitude": -71.808596377232
     },
     {
       "name": "Largo",
-      "address": "10582 Campus Way South, Kettering, MD 20774",
-      "street": "10582 Campus Way South",
-      "city": "Kettering",
+      "address": "10432 Campus Way South, Upper Marlboro, MD 20774",
+      "street": "10432 Campus Way South",
+      "city": "Upper Marlboro",
       "state": "MD",
       "zip": "20774",
       "slug": "largo",
       "timeZone": "America/New_York",
       "status": "coming-soon",
       "plannedFor": "October 2026",
-      "latitude": 38.896893270885,
-      "longitude": -76.822897516773
+      "latitude": 38.894826046838,
+      "longitude": -76.82298599757
     },
     {
       "name": "Gambrills",
@@ -2621,6 +2672,34 @@
       "longitude": -76.680184805852
     },
     {
+      "name": "Ashburn",
+      "address": "43135 Broadlands Center Plaza, Ashburn, VA 20148",
+      "street": "43135 Broadlands Center Plaza",
+      "city": "Ashburn",
+      "state": "VA",
+      "zip": "20148",
+      "slug": "ashburn",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "November 2026",
+      "latitude": 39.02531977025,
+      "longitude": -77.508589132562
+    },
+    {
+      "name": "Hagerstown",
+      "address": "18011 Garland Groh Blvd, Hagerstown, MD 21740",
+      "street": "18011 Garland Groh Blvd",
+      "city": "Hagerstown",
+      "state": "MD",
+      "zip": "21740",
+      "slug": "hagerstown",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "November 2026",
+      "latitude": 39.660162911699,
+      "longitude": -77.74555625285
+    },
+    {
       "name": "Bellingham",
       "address": "255 Hartford Ave, Bellingham, MA 02019",
       "street": "255 Hartford Ave",
@@ -2630,7 +2709,7 @@
       "slug": "bellingham",
       "timeZone": "America/New_York",
       "status": "coming-soon",
-      "plannedFor": "February 2027",
+      "plannedFor": "December 2026",
       "latitude": 42.114026652921,
       "longitude": -71.469802170865
     }
