@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-09-29T04:15:44.732Z",
+  "updatedAt": "2026-09-29T04:21:29.073Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -2408,8 +2408,9 @@
       "zip": "11762",
       "slug": "massapequa-park",
       "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "October 2026",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
       "latitude": 40.678213357879,
       "longitude": -73.456099652597
     },
