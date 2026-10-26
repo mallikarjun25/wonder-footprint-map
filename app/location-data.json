@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-10-19T16:31:38.494Z",
+  "updatedAt": "2026-10-26T16:11:31.047Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -1095,7 +1095,6 @@
       "zip": "22310",
       "slug": "franconia",
       "timeZone": "America/New_York",
-      "status": "renovation",
       "hoursLabel": "Daily · 10:30am–2:00am",
       "opensAt": 630,
       "closesAt": 120,
@@ -2460,6 +2459,21 @@
       "longitude": -73.456099652597
     },
     {
+      "name": "Burtonsville",
+      "address": "15791 Old Columbia Pike, Burtonsville, MD 20866",
+      "street": "15791 Old Columbia Pike",
+      "city": "Burtonsville",
+      "state": "MD",
+      "zip": "20866",
+      "slug": "burtonsville",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 39.112777380977,
+      "longitude": -76.932525572659
+    },
+    {
       "name": "Salem",
       "address": "125A South Broadway, Salem, NH 03079",
       "street": "125A South Broadway",
@@ -2565,23 +2579,6 @@
       "longitude": -76.680184805852
     },
     {
-      "name": "Bayside",
-      "address": "215-16 Northern Blvd, Queens, NY 11361",
-      "street": "215-16 Northern Blvd",
-      "city": "Queens",
-      "state": "NY",
-      "zip": "11361",
-      "slug": "bayside",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "December 2026",
-      "hoursLabel": "Daily · 8:00am–7:30pm",
-      "opensAt": 480,
-      "closesAt": 1170,
-      "latitude": 40.76053591008,
-      "longitude": -73.766917343142
-    },
-    {
       "name": "Emerson",
       "address": "484 Kinderkamack Rd, Emerson, NJ 07630",
       "street": "484 Kinderkamack Rd",
@@ -2628,20 +2625,6 @@
       "closesAt": 1170,
       "latitude": 40.604258435477,
       "longitude": -73.972113269362
-    },
-    {
-      "name": "Burtonsville",
-      "address": "15791 Old Columbia Pike, Burtonsville, MD 20866",
-      "street": "15791 Old Columbia Pike",
-      "city": "Burtonsville",
-      "state": "MD",
-      "zip": "20866",
-      "slug": "burtonsville",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "October 2026",
-      "latitude": 39.112777380977,
-      "longitude": -76.932525572659
     },
     {
       "name": "Eldersburg",
