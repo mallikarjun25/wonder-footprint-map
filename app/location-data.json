@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-10-26T16:11:31.047Z",
+  "updatedAt": "2026-11-09T19:54:25.626Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -1879,8 +1879,9 @@
       "zip": "08540",
       "slug": "montgomery-promenade",
       "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "October 2026",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
       "latitude": 40.3666,
       "longitude": -74.6408,
       "coordinatePrecision": "zip"
@@ -2393,8 +2394,9 @@
       "zip": "19709",
       "slug": "middletown-warwick",
       "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "October 2026",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
       "latitude": 39.453305751367,
       "longitude": -75.724156150821
     },
@@ -2519,6 +2521,20 @@
       "longitude": -71.7776713
     },
     {
+      "name": "Eldersburg",
+      "address": "6400 Ridge Road, Sykesville, MD 21784",
+      "street": "6400 Ridge Road",
+      "city": "Sykesville",
+      "state": "MD",
+      "zip": "21784",
+      "slug": "eldersburg",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "November 2026",
+      "latitude": 39.393782470897,
+      "longitude": -76.932376464469
+    },
+    {
       "name": "Worcester",
       "address": "14 Park ave, Worcester, MA 01605",
       "street": "14 Park ave",
@@ -2579,6 +2595,35 @@
       "longitude": -76.680184805852
     },
     {
+      "name": "Hagerstown",
+      "address": "18011 Garland Groh Blvd, Hagerstown, MD 21740",
+      "street": "18011 Garland Groh Blvd",
+      "city": "Hagerstown",
+      "state": "MD",
+      "zip": "21740",
+      "slug": "hagerstown",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 39.660162911699,
+      "longitude": -77.74555625285
+    },
+    {
+      "name": "Bayside",
+      "address": "215-16 Northern Blvd, Queens, NY 11361",
+      "street": "215-16 Northern Blvd",
+      "city": "Queens",
+      "state": "NY",
+      "zip": "11361",
+      "slug": "bayside",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "December 2026",
+      "latitude": 40.76053591008,
+      "longitude": -73.766917343142
+    },
+    {
       "name": "Emerson",
       "address": "484 Kinderkamack Rd, Emerson, NJ 07630",
       "street": "484 Kinderkamack Rd",
@@ -2627,18 +2672,103 @@
       "longitude": -73.972113269362
     },
     {
-      "name": "Eldersburg",
-      "address": "6400 Ridge Road, Sykesville, MD 21784",
-      "street": "6400 Ridge Road",
-      "city": "Sykesville",
-      "state": "MD",
-      "zip": "21784",
-      "slug": "eldersburg",
+      "name": "Richardson",
+      "address": "1401 West Campbell Road, Suite 200, Richardson, TX 75080",
+      "street": "1401 West Campbell Road, Suite 200",
+      "city": "Richardson",
+      "state": "TX",
+      "zip": "75080",
+      "slug": "richardson",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "January 2027",
+      "latitude": 32.978092067707,
+      "longitude": -96.766140052363
+    },
+    {
+      "name": "McKinney",
+      "address": "8555 West University Drive, Suite 100, McKinney, TX 75071",
+      "street": "8555 West University Drive, Suite 100",
+      "city": "McKinney",
+      "state": "TX",
+      "zip": "75071",
+      "slug": "mckinney",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "January 2027",
+      "latitude": 33.1976,
+      "longitude": -96.6153,
+      "coordinatePrecision": "zip"
+    },
+    {
+      "name": "Oak Cliff",
+      "address": "2525 Fort Worth Ave, Dallas, TX 75211",
+      "street": "2525 Fort Worth Ave",
+      "city": "Dallas",
+      "state": "TX",
+      "zip": "75211",
+      "slug": "oak-cliff",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 32.759123442352,
+      "longitude": -96.863091396706
+    },
+    {
+      "name": "Addison",
+      "address": "5100 Belt Line Road, Suite 930, Addison, TX 75254",
+      "street": "5100 Belt Line Road, Suite 930",
+      "city": "Addison",
+      "state": "TX",
+      "zip": "75254",
+      "slug": "addison",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "January 2027",
+      "latitude": 32.953964911641,
+      "longitude": -96.821670207704
+    },
+    {
+      "name": "Murphy",
+      "address": "203 E FM 544, Unit 203, Murphy, TX 75094",
+      "street": "203 E FM 544, Unit 203",
+      "city": "Murphy",
+      "state": "TX",
+      "zip": "75094",
+      "slug": "murphy",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "January 2027",
+      "latitude": 33.011549187123,
+      "longitude": -96.608772355944
+    },
+    {
+      "name": "Kingsbridge",
+      "address": "225 W 230th St, Bronx, NY 10463",
+      "street": "225 W 230th St",
+      "city": "Bronx",
+      "state": "NY",
+      "zip": "10463",
+      "slug": "kingsbridge",
       "timeZone": "America/New_York",
       "status": "coming-soon",
-      "plannedFor": "November 2026",
-      "latitude": 39.393782470897,
-      "longitude": -76.932376464469
+      "plannedFor": "February 2027",
+      "latitude": 40.877431210244,
+      "longitude": -73.907092908495
+    },
+    {
+      "name": "Glenville",
+      "address": "268 Saratoga Road, Schenectady, NY 12301",
+      "street": "268 Saratoga Road",
+      "city": "Schenectady",
+      "state": "NY",
+      "zip": "12301",
+      "slug": "glenville",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 42.8711462,
+      "longitude": -73.9310422
     },
     {
       "name": "Ashburn",
@@ -2655,18 +2785,32 @@
       "longitude": -77.508589132562
     },
     {
-      "name": "Hagerstown",
-      "address": "18011 Garland Groh Blvd, Hagerstown, MD 21740",
-      "street": "18011 Garland Groh Blvd",
-      "city": "Hagerstown",
-      "state": "MD",
-      "zip": "21740",
-      "slug": "hagerstown",
+      "name": "Rowlett",
+      "address": "3802 Lakeview Parkway, Rowlett, TX 75088",
+      "street": "3802 Lakeview Parkway",
+      "city": "Rowlett",
+      "state": "TX",
+      "zip": "75088",
+      "slug": "rowlett",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "January 2027",
+      "latitude": 32.907459951884,
+      "longitude": -96.565173881549
+    },
+    {
+      "name": "Saugus",
+      "address": "259 Essex Street, Saugus, MA 01906",
+      "street": "259 Essex Street",
+      "city": "Saugus",
+      "state": "MA",
+      "zip": "01906",
+      "slug": "saugus",
       "timeZone": "America/New_York",
       "status": "coming-soon",
-      "plannedFor": "November 2026",
-      "latitude": 39.660162911699,
-      "longitude": -77.74555625285
+      "plannedFor": "January 2027",
+      "latitude": 42.456632990169,
+      "longitude": -71.021491089944
     },
     {
       "name": "Bellingham",
@@ -2681,6 +2825,20 @@
       "plannedFor": "December 2026",
       "latitude": 42.114026652921,
       "longitude": -71.469802170865
+    },
+    {
+      "name": "Locust Point",
+      "address": "1603 Whetstone Way, Baltimore, MD 21230",
+      "street": "1603 Whetstone Way",
+      "city": "Baltimore",
+      "state": "MD",
+      "zip": "21230",
+      "slug": "locust-point",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 39.269503144409,
+      "longitude": -76.599539049287
     }
   ]
 }
