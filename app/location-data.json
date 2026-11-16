@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-11-09T19:54:25.626Z",
+  "updatedAt": "2026-11-16T18:29:53.947Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -2326,6 +2326,21 @@
       "longitude": -71.36282188186
     },
     {
+      "name": "Lindenhurst",
+      "address": "52-54 East Sunrise Highway, Lindenhurst, NY 11757",
+      "street": "52-54 East Sunrise Highway",
+      "city": "Lindenhurst",
+      "state": "NY",
+      "zip": "11757",
+      "slug": "lindenhurst",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 40.700554070848,
+      "longitude": -73.379850721598
+    },
+    {
       "name": "Port Washington",
       "address": "6 Soundview Market Place, Port Washington, NY 11050",
       "street": "6 Soundview Market Place",
@@ -2529,8 +2544,9 @@
       "zip": "21784",
       "slug": "eldersburg",
       "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "November 2026",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
       "latitude": 39.393782470897,
       "longitude": -76.932376464469
     },
@@ -2595,6 +2611,21 @@
       "longitude": -76.680184805852
     },
     {
+      "name": "Ashburn",
+      "address": "43135 Broadlands Center Plaza, Ashburn, VA 20148",
+      "street": "43135 Broadlands Center Plaza",
+      "city": "Ashburn",
+      "state": "VA",
+      "zip": "20148",
+      "slug": "ashburn",
+      "timeZone": "America/New_York",
+      "hoursLabel": "Daily · 10:30am–11:30pm",
+      "opensAt": 630,
+      "closesAt": 1410,
+      "latitude": 39.02531977025,
+      "longitude": -77.508589132562
+    },
+    {
       "name": "Hagerstown",
       "address": "18011 Garland Groh Blvd, Hagerstown, MD 21740",
       "street": "18011 Garland Groh Blvd",
@@ -2639,20 +2670,6 @@
       "closesAt": 1170,
       "latitude": 40.9746622,
       "longitude": -74.0275022
-    },
-    {
-      "name": "Lindenhurst",
-      "address": "52-54 East Sunrise Highway, Lindenhurst, NY 11757",
-      "street": "52-54 East Sunrise Highway",
-      "city": "Lindenhurst",
-      "state": "NY",
-      "zip": "11757",
-      "slug": "lindenhurst",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "November 2026",
-      "latitude": 40.700554070848,
-      "longitude": -73.379850721598
     },
     {
       "name": "Gravesend",
@@ -2743,20 +2760,6 @@
       "longitude": -96.608772355944
     },
     {
-      "name": "Kingsbridge",
-      "address": "225 W 230th St, Bronx, NY 10463",
-      "street": "225 W 230th St",
-      "city": "Bronx",
-      "state": "NY",
-      "zip": "10463",
-      "slug": "kingsbridge",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "February 2027",
-      "latitude": 40.877431210244,
-      "longitude": -73.907092908495
-    },
-    {
       "name": "Glenville",
       "address": "268 Saratoga Road, Schenectady, NY 12301",
       "street": "268 Saratoga Road",
@@ -2769,20 +2772,6 @@
       "plannedFor": "February 2027",
       "latitude": 42.8711462,
       "longitude": -73.9310422
-    },
-    {
-      "name": "Ashburn",
-      "address": "43135 Broadlands Center Plaza, Ashburn, VA 20148",
-      "street": "43135 Broadlands Center Plaza",
-      "city": "Ashburn",
-      "state": "VA",
-      "zip": "20148",
-      "slug": "ashburn",
-      "timeZone": "America/New_York",
-      "status": "coming-soon",
-      "plannedFor": "November 2026",
-      "latitude": 39.02531977025,
-      "longitude": -77.508589132562
     },
     {
       "name": "Rowlett",

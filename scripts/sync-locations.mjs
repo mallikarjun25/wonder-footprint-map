@@ -91,16 +91,26 @@ async function geocode(stores, previousBySlug) {
 
 async function fetchReader(path) {
   // The shared reader occasionally serves a cached tracking redirect for this
-  // site. Retry with a unique source URL instead of accepting that tiny page as
-  // valid Wonder content.
+  // site. A stable referral query currently bypasses that redirect; retain
+  // dated attribution URLs as fallbacks for future cache behavior changes.
   const keys = [new Date().toISOString().slice(0, 10), `${Date.now()}`, `${Date.now()}-${Math.random()}`];
-  for (const refreshKey of keys) {
-    const response = await fetch(`${READER_PREFIX}${path}?portfolio_sync=${refreshKey}`, {
+  const separator = path.includes("?") ? "&" : "?";
+  const sourceUrls = [
+    `${READER_PREFIX}${path}${separator}ref=github`,
+    `${READER_PREFIX}${path}${separator}ref=github-pages`,
+    `${READER_PREFIX}${path}${separator}ref=github-actions`,
+    ...keys.map((refreshKey) => `${READER_PREFIX}${path}${separator}utm_source=portfolio_sync&utm_content=${encodeURIComponent(refreshKey)}`),
+  ];
+  for (const sourceUrl of sourceUrls) {
+    const response = await fetch(sourceUrl, {
       headers: { Accept: "text/plain", "X-No-Cache": "true" },
     });
     if (!response.ok) continue;
     const text = await response.text();
-    if (text.length > 1000 && !text.includes("match.adsrvr.org")) return text;
+    const directoryLinks = [...text.matchAll(/food-delivery-locations\//g)].length;
+    const validDirectory = path === "/food-delivery-locations" && directoryLinks >= 150;
+    const validDetail = path !== "/food-delivery-locations" && text.length > 1000 && !text.includes("Final URL: https://match.adsrvr.org");
+    if (validDirectory || validDetail) return text;
   }
   throw new Error(`Public directory reader returned no valid Wonder content for ${path}`);
 }
@@ -160,7 +170,7 @@ if (source.jsonLd) {
     let hours = old?.hoursLabel
       ? { hoursLabel: old.hoursLabel, opensAt: old.opensAt, closesAt: old.closesAt }
       : {};
-    if (!plannedMatch && (!old || old.status === "coming-soon" || !old.hoursLabel)) {
+    if (!plannedMatch && (renovation || !old || old.status !== undefined || !old.hoursLabel)) {
       try {
         const detail = await fetchReader(`/food-delivery-locations/${slug}`);
         const detailPlanned = detail.match(/COMING SOON\s*-\s*([^\n]+)/i);
