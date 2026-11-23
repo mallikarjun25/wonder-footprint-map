@@ -1,6 +1,6 @@
 {
   "source": "https://www.wonder.com/food-delivery-locations",
-  "updatedAt": "2026-11-16T18:29:53.947Z",
+  "updatedAt": "2026-11-23T21:31:18.572Z",
   "locations": [
     {
       "name": "Upper West Side",
@@ -2703,6 +2703,20 @@
       "longitude": -96.766140052363
     },
     {
+      "name": "Montgomery Plaza",
+      "address": "2600 West 7th Street, Fort Worth, TX 76107",
+      "street": "2600 West 7th Street",
+      "city": "Fort Worth",
+      "state": "TX",
+      "zip": "76107",
+      "slug": "montgomery-plaza",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 32.751130612725,
+      "longitude": -97.35300000904
+    },
+    {
       "name": "McKinney",
       "address": "8555 West University Drive, Suite 100, McKinney, TX 75071",
       "street": "8555 West University Drive, Suite 100",
@@ -2746,6 +2760,20 @@
       "longitude": -96.821670207704
     },
     {
+      "name": "Southlake",
+      "address": "2055 W Southlake Blvd, Southlake, TX 76092",
+      "street": "2055 W Southlake Blvd",
+      "city": "Southlake",
+      "state": "TX",
+      "zip": "76092",
+      "slug": "southlake",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 32.939479405982,
+      "longitude": -97.182952585721
+    },
+    {
       "name": "Murphy",
       "address": "203 E FM 544, Unit 203, Murphy, TX 75094",
       "street": "203 E FM 544, Unit 203",
@@ -2760,6 +2788,20 @@
       "longitude": -96.608772355944
     },
     {
+      "name": "Kingsbridge",
+      "address": "225 W 230th St, Bronx, NY 10463",
+      "street": "225 W 230th St",
+      "city": "Bronx",
+      "state": "NY",
+      "zip": "10463",
+      "slug": "kingsbridge",
+      "timeZone": "America/New_York",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 40.877431210244,
+      "longitude": -73.907092908495
+    },
+    {
       "name": "Glenville",
       "address": "268 Saratoga Road, Schenectady, NY 12301",
       "street": "268 Saratoga Road",
@@ -2772,6 +2814,20 @@
       "plannedFor": "February 2027",
       "latitude": 42.8711462,
       "longitude": -73.9310422
+    },
+    {
+      "name": "Plano",
+      "address": "1801 Preston rd. C, Plano, TX 75093",
+      "street": "1801 Preston rd. C",
+      "city": "Plano",
+      "state": "TX",
+      "zip": "75093",
+      "slug": "plano",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "February 2027",
+      "latitude": 33.024482693259,
+      "longitude": -96.795218562228
     },
     {
       "name": "Rowlett",
@@ -2828,6 +2884,20 @@
       "plannedFor": "February 2027",
       "latitude": 39.269503144409,
       "longitude": -76.599539049287
+    },
+    {
+      "name": "Frisco",
+      "address": "4585 Preston Road, Frisco, TX 75034",
+      "street": "4585 Preston Road",
+      "city": "Frisco",
+      "state": "TX",
+      "zip": "75034",
+      "slug": "frisco",
+      "timeZone": "America/Chicago",
+      "status": "coming-soon",
+      "plannedFor": "January 2027",
+      "latitude": 33.1163521,
+      "longitude": -96.8062917
     }
   ]
 }
